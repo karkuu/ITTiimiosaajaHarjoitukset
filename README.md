@@ -1,3 +1,7 @@
-# IT-tiimiosaaja tarjoitukset
+# IT-tiimiosaaja harjoitukset
 
-Kurssin harjoituksia
+Kurssin pieniä yksittäisiä harjoituksia.
+
+- js
+  - lotto
+  - numeron arvaaminen
