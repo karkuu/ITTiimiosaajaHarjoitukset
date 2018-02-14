@@ -114,8 +114,77 @@ class lottoArvonta extends lottoKone // Lottoarvonta jossa k‰ytet‰‰n VIRALLISTA 
 
 class lottoRivi
 {
-    constructor()
+    constructor(lottoPallojenMaara)
 	{
+		this.lottoPallojenMaara = lottoPallojenMaara;
+	}
+	luoLottoRuudukko(kohdeSivulla,ruudukonNimi)
+	{
+		var i,ii;
+		var ruudukko = "<table border=1 id=\""+ruudukonNimi+"\">";
+			
+		for (i=0; i<this.lottoPallojenMaara;)
+		{
+			ruudukko += "<tr>";
+			for (ii=0; ii<6;ii++)
+			{
+				if(i<this.lottoPallojenMaara)
+				{
+				i++;
+				ruudukko += "<td>"+i+"<input type=\"checkbox\" id=\""+ruudukonNimi+"checbox"+i+"\"></td>";
+				
+				}
+				
+			}			
+			ruudukko += "</tr>";
+		
+		}
+		ruudukko += "</table>";
+		document.getElementById(kohdeSivulla).innerHTML = ruudukko;
+	}	
+	haeNumerotRuudukosta(ruudukonNimi)
+	{
+	var i = 1;
+	var valitutnumerot = [];
+	
+	while (document.getElementById("lottoruudukkochecbox"+i) != null)
+	{
+		if (document.getElementById("lottoruudukkochecbox"+i).checked == true)
+		{
+		valitutnumerot.push(i);
+		}
+		i++;
+	}
+	
+	return valitutnumerot;
+	
 	
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
