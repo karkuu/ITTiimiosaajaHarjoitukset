@@ -2,11 +2,32 @@
 <html>
 <head>
 <title>Lotto JS</title>
-<script src="lotto.js" language="javascript" type="text/javascript"></script>
+<script src="lotto.js" type="text/javascript"></script>
 </head>
 
 <body>
 
+
+
+<script type="text/javascript"> 
+
+let lotto = new lottoArvonta(40,7,3);
+
+//lotto.sekoitaPalloja();
+
+lotto.arvoPalloja();
+lotto.uudetPallotKoneeseen();
+lotto.arvoPalloja();
+
+alert(lotto.jarjesteltyRivi(lotto.numerotToString()));
+alert(lotto.jarjesteltyRivi(lotto.lisanumerotToString()));
+
+
+
+//alert(lotto.numerotToString());
+//alert(lotto.lisanumerotToString());
+
+</script>
 
 </body>
 </html>
