@@ -1,4 +1,4 @@
-# IT-tiimiosaaja harjoitukset
+# Kurssin IT-tiimiosaaja harjoitukset
 
 Kurssin pieniä yksittäisiä harjoituksia.
 
