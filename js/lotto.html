@@ -15,7 +15,9 @@ text-align:right;
 
 <body>
 <p id="lottorivi"></p>
-<input type="button" value="Arvo numerot ja tarkista rivi" onclick="lottorivi.haeNumerotRuudukosta('lottoruudukko')">
+<input type="button" value="Arvo numerot ja tarkista rivi" onclick="arvoJaTarkistaRivi()">
+
+<p id="tarkistetturivi"></p>
 
 
 
@@ -23,30 +25,26 @@ text-align:right;
 
 
 <script type="text/javascript"> 
-var lottorivi = new lottoRivi(40);
-lottorivi.luoLottoRuudukko("lottorivi","lottoruudukko");
 
 
+function arvoJaTarkistaRivi()
+{
+	lotto.uudetPallotKoneeseen();
+	lotto.sekoitaPalloja();
+	lotto.arvoPalloja();
+	
+	omalottorivi.luoTarkistettuRivi(omalottorivi.haeNumerotRuudukosta('lottoruudukko'),lotto.jarjesteltyRivi(lotto.numerotToString()),lotto.jarjesteltyRivi(lotto.lisanumerotToString()),"tarkistetturivi");
+}
 
+var pallojaKpl = 40;
+var numeroita = 7;
+var lisanumeroita = 1;
 
+var omalottorivi = new lottoRivi(pallojaKpl,numeroita);
 
-//var lotto = new lottoArvonta(40,7,3);
+omalottorivi.luoLottoRuudukko("lottorivi","lottoruudukko","omalottorivi");
 
-
-
-//lotto.sekoitaPalloja();
-
-//lotto.arvoPalloja();
-//lotto.uudetPallotKoneeseen();
-//lotto.arvoPalloja();
-
-//alert(lotto.jarjesteltyRivi(lotto.numerotToString()));
-//alert(lotto.jarjesteltyRivi(lotto.lisanumerotToString()));
-
-
-
-//alert(lotto.numerotToString());
-//alert(lotto.lisanumerotToString());
+var lotto = new lottoArvonta(pallojaKpl,numeroita,lisanumeroita);
 
 </script>
 

@@ -92,6 +92,17 @@ class lottoArvonta extends lottoKone // Lottoarvonta jossa k‰ytet‰‰n VIRALLISTA 
 		var rivi = jarjesteltavaRivi.split(',');
 		return rivi.sort(function(a, b){return a-b});	
 	}
+	/*jarjestleRiviToString(jarjesteltavaRivi)
+	{
+		var numerot = "";
+		var rivi = jarjesteltavaRivi.split(',');
+		for (var i=0;i<this.numerot.length;i++)
+		{
+			numerot += rivi.palloNumero + ","; 
+		}
+		return numerot.substr(0,numerot.length-1);
+		
+	}*/
 	numerotToString()
 	{
 		var numerot = "";
@@ -114,13 +125,22 @@ class lottoArvonta extends lottoKone // Lottoarvonta jossa k‰ytet‰‰n VIRALLISTA 
 
 class lottoRivi
 {
-    constructor(lottoPallojenMaara)
+    constructor(lottoPallojenMaara,valittujaNumeroitaMax)
 	{
 		this.lottoPallojenMaara = lottoPallojenMaara;
+		this.valittujaNumeroitaMax = valittujaNumeroitaMax;
+		this.valittujaNumeroita = 0;
+		this.kohdeSivulla = "";
+		this.ruudukonNimi = "";
+		this.olionNimi = "";
 	}
-	luoLottoRuudukko(kohdeSivulla,ruudukonNimi)
+	luoLottoRuudukko(kohdeSivulla,ruudukonNimi,olionNimi)
 	{
 		var i,ii;
+		this.kohdeSivulla = kohdeSivulla;
+		this.ruudukonNimi = ruudukonNimi;
+		this.olionNimi = olionNimi;
+	
 		var ruudukko = "<table border=1 id=\""+ruudukonNimi+"\">";
 			
 		for (i=0; i<this.lottoPallojenMaara;)
@@ -131,7 +151,7 @@ class lottoRivi
 				if(i<this.lottoPallojenMaara)
 				{
 				i++;
-				ruudukko += "<td>"+i+"<input type=\"checkbox\" id=\""+ruudukonNimi+"checbox"+i+"\"></td>";
+				ruudukko += "<td>"+i+"<input type=\"checkbox\" id=\""+ruudukonNimi+"checbox"+i+"\" onclick=\""+olionNimi+"."+ruudukonNimi+"checboxclick("+i+");\"></td>";
 				
 				}
 				
@@ -141,24 +161,76 @@ class lottoRivi
 		}
 		ruudukko += "</table>";
 		document.getElementById(kohdeSivulla).innerHTML = ruudukko;
-	}	
+	}
+	luoTarkistettuRivi(omarivi,numerot,lisanumerot,kohde)
+	{
+		if (this.valittujaNumeroitaMax != this.valittujaNumeroita)
+		{
+			alert("V‰‰r‰ m‰‰r‰ valittuja numeroita! LottoKonekin osaa yhteenlaskun paremmin kuin sin‰!"); 
+		}
+		
+		else 
+		{
+		document.getElementById(kohde).innerHTML = omarivi+numerot+lisanumerot+kohde;
+		}
+	}
+	
+	
+	
+	
 	haeNumerotRuudukosta(ruudukonNimi)
 	{
 	var i = 1;
 	var valitutnumerot = [];
 	
-	while (document.getElementById("lottoruudukkochecbox"+i) != null)
+	while (document.getElementById(this.ruudukonNimi+"checbox"+i) != null)
 	{
-		if (document.getElementById("lottoruudukkochecbox"+i).checked == true)
+		if (document.getElementById(this.ruudukonNimi+"checbox"+i).checked == true)
 		{
 		valitutnumerot.push(i);
 		}
 		i++;
+	}	
+	return valitutnumerot;	
 	}
+	lottoruudukkochecboxclick(ruudunNumero)
+	{
+		var i;
+		
+		if (document.getElementById(this.ruudukonNimi+"checbox"+ruudunNumero).checked == true)
+		{
+			this.valittujaNumeroita++;
+			//alert(this.valittujaNumeroitaMax);
+			
+			
+			if (this.valittujaNumeroitaMax == this.valittujaNumeroita)
+			{
+				for (i=1;i<this.lottoPallojenMaara;i++)
+				{
+					if (document.getElementById(this.ruudukonNimi+"checbox"+i).checked == false)
+					{
+						document.getElementById(this.ruudukonNimi+"checbox"+i).disabled = true;
+					}
+				
+				}
+			}
+		}
+		else if (document.getElementById(this.ruudukonNimi+"checbox"+ruudunNumero).checked == false)
+		{
+			this.valittujaNumeroita--;
+
+			if (this.valittujaNumeroitaMax > this.valittujaNumeroita)
+			{
+				for (i=1;i<this.lottoPallojenMaara;i++)
+				{
 	
-	return valitutnumerot;
-	
-	
+					document.getElementById(this.ruudukonNimi+"checbox"+i).disabled = false;
+					
+				
+				}
+			}
+		}
+
 	}
 }
 
