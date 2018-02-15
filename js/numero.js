@@ -6,7 +6,7 @@ class arvaaNumero
 		this.suurinnumero = suurinnumero; // Suurin satunnainen numero
 		this.kohde = kohde;
 		this.omaNimi = omaNimi;
-		this.arvattavanumero = 500;
+		this.arvattavanumero;
 		this.arvauksia = 0;
 		
 		this.lisaaElementitSivulle();
