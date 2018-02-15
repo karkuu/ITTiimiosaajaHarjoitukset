@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Numeroarvaus JS</title>
+<meta charset="UTF-8">
 </head>
 <style>
 #arvaanumeropeli table
@@ -13,6 +14,7 @@ width: 300px;
 height: 50px;
 text-align: center;
 font-size: 30px;
+background-color: black;
 }
 #teksti
 {
@@ -31,9 +33,15 @@ width: 50px;
 font-size:30px;
 text-align: center
 }
-#mappiboxi
+#nappiboxi
 {
 height: 50px;
+text-align: center
+}
+#arvausbutton
+{
+font-size:30px;
+
 }
 
 </style>
@@ -44,7 +52,7 @@ height: 50px;
 
 <script type="text/javascript"> 
 "use strict";
-let peli = new arvaaNumero(999,"arvaanumeropeli");
+let peli = new arvaaNumero(100,"arvaanumeropeli","peli");
 
 
 </script>
