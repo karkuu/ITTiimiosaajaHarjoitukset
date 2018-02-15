@@ -16,38 +16,38 @@ width:500px;
 height:500px;
 position: relative;
 }
-.vihollinen
+.palikat
 {
 background-color:red;
 position:absolute;
-width:20px;
+width:50px;
 height:20px;
-
 }
 #pelaaja
 {
 background-color:green;
 position:absolute;
-width:20px;
+width:60px;
 height:10px;
-left: 230px;
-top: 480px;
-
+}
+#kuula
+{
+background-color:black;
+position:absolute;
+width:10px;
+height:10px;
 }
 </style>
 <script src="peli.js" language="javascript" type="text/javascript"></script>
 <body>
 <p id="peli"></p>
 
-aaa
-
-
 <script type="text/javascript"> 
 
 var peli = new Peli();
 
 
-
+setInterval(function(){ peli.siirraObjekteja(); }, 15);
 
 
 
