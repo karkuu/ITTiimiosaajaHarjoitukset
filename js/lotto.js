@@ -91,25 +91,14 @@ class lottoArvonta extends lottoKone // Lottoarvonta jossa k‰ytet‰‰n VIRALLISTA 
 	jarjesteltyRivi(jarjesteltavaRivi)
 	{
 		var rivi = jarjesteltavaRivi.split(',');
-		return rivi.sort(function(a, b){return a-b});	
+		return rivi.sort(function(a, b){return a-b}); // J‰rjestell‰‰n pallot per‰kk‰in 	
 	}
-	/*jarjestleRiviToString(jarjesteltavaRivi)
-	{
-		var numerot = "";
-		var rivi = jarjesteltavaRivi.split(',');
-		for (var i=0;i<this.numerot.length;i++)
-		{
-			numerot += rivi.palloNumero + ","; 
-		}
-		return numerot.substr(0,numerot.length-1);
-		
-	}*/
 	numerotToString()
 	{
 		var numerot = "";
 		for (var i=0;i<this.numerot.length;i++)
 		{
-			numerot += this.numerot[i].palloNumero + ","; 
+			numerot += this.numerot[i].palloNumero + ","; // Siirret‰‰n varsinaiset lottonumero pallot putkeen tarkistamista varten
 		}
 		return numerot.substr(0,numerot.length-1);
 	}
@@ -118,7 +107,7 @@ class lottoArvonta extends lottoKone // Lottoarvonta jossa k‰ytet‰‰n VIRALLISTA 
 		var numerot = "";
 		for (var i=0;i<this.lisanumerot.length;i++)
 		{
-			numerot += this.lisanumerot[i].palloNumero + ",";
+			numerot += this.lisanumerot[i].palloNumero + ","; // Siirret‰‰n lis‰numero pallot putkeen tarkistamista varten
 		}
 		return numerot.substr(0,numerot.length-1);
 	}
@@ -135,7 +124,7 @@ class lottoRivi
 		this.ruudukonNimi = "";
 		this.olionNimi = "";
 	}
-	luoLottoRuudukko(kohdeSivulla,ruudukonNimi,olionNimi)
+	luoLottoRuudukko(kohdeSivulla,ruudukonNimi,olionNimi) // Luodaan halutun niminen lottoruudukko haluttuun paikkaan sivulla
 	{
 		var i,ii;
 		this.kohdeSivulla = kohdeSivulla;
@@ -163,7 +152,7 @@ class lottoRivi
 		ruudukko += "</table>";
 		document.getElementById(kohdeSivulla).innerHTML = ruudukko;
 	}
-	luoTarkistettuRivi(omarivi,numerot,lisanumerot,kohde)
+	luoTarkistettuRivi(omarivi,numerot,lisanumerot,kohde) // Luodaan numeroiden tarkistusrivi, jossa n‰ytet‰‰n mahdolliset osumat
 	{
 		var i,ii,osuma;
 		var tarkistettavarivi = omarivi;
@@ -175,10 +164,9 @@ class lottoRivi
 		{
 			alert("V‰‰r‰ m‰‰r‰ valittuja numeroita! LottoKonekin osaa yhteenlaskun paremmin kuin sin‰!"); 
 		}
-
 		else 
 		{
-			rivi += "<table border=1><tr>";
+			rivi += "<table border=1><tr>"; // Varsinaiset numerot
 			for (i=0;i<tarkistettavatnumerot.length;i++)
 			{
 				osuma = 0;
@@ -191,18 +179,16 @@ class lottoRivi
 				}	
 				if (osuma == 1)
 				{
-					rivi += "<td style=\"background-color:green\">"+tarkistettavatnumerot[i]+"</td>";
+					rivi += "<td style=\"background-color:lightgreen\">"+tarkistettavatnumerot[i]+"</td>";
 				}
 				else
 				{
 					rivi += "<td>"+tarkistettavatnumerot[i]+"</td>";
-				}
-
-				
+				}			
 			}
 			rivi += "</tr></table>";
 			
-			rivi += "<table border=1><tr>";
+			rivi += "<table border=1><tr>"; // Lis‰numerot
 			for (i=0;i<tarkistettavatlisanumerot.length;i++)
 			{
 				osuma = 0;
@@ -215,23 +201,19 @@ class lottoRivi
 				}	
 				if (osuma == 1)
 				{
-					rivi += "<td style=\"background-color:green\">"+tarkistettavatlisanumerot[i]+"</td>";
+					rivi += "<td style=\"background-color:lightgreen\">"+tarkistettavatlisanumerot[i]+"</td>";
 				}
 				else
 				{
 					rivi += "<td>"+tarkistettavatlisanumerot[i]+"</td>";
-				}
-
-				
+				}				
 			}
 			rivi += "</tr></table>";
-			
-			
-			
+						
 			document.getElementById(kohde).innerHTML = rivi;
 		}
 	}
-	haeNumerotRuudukosta(ruudukonNimi)
+	haeNumerotRuudukosta(ruudukonNimi) // Haetaan valitut numerot ruudukosta
 	{
 	var i = 1;
 	var valitutnumerot = [];
@@ -246,7 +228,7 @@ class lottoRivi
 	}	
 	return valitutnumerot;	
 	}
-	lottoruudukkochecboxclick(ruudunNumero)
+	lottoruudukkochecboxclick(ruudunNumero) // Muutellaan ruutujen tilaa valittujen numeroiden m‰‰r‰n mukaan
 	{
 		var i;
 		
