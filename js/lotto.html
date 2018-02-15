@@ -8,7 +8,10 @@
 width:40px;
 text-align:right;
 }
-
+#tarkistetturivi td
+{
+width:40px;
+}
 </style>
 <script src="lotto.js" type="text/javascript"></script>
 </head>
@@ -26,7 +29,7 @@ text-align:right;
 
 <script type="text/javascript"> 
 
-
+"use strict";
 function arvoJaTarkistaRivi()
 {
 	lotto.uudetPallotKoneeseen();
@@ -38,7 +41,7 @@ function arvoJaTarkistaRivi()
 
 var pallojaKpl = 40;
 var numeroita = 7;
-var lisanumeroita = 1;
+var lisanumeroita = 3;
 
 var omalottorivi = new lottoRivi(pallojaKpl,numeroita);
 

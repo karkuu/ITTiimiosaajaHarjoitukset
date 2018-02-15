@@ -1,3 +1,4 @@
+"use strict";
 class lottoPallo
 {
 	constructor(lottoPallonNumero)
@@ -164,20 +165,72 @@ class lottoRivi
 	}
 	luoTarkistettuRivi(omarivi,numerot,lisanumerot,kohde)
 	{
+		var i,ii,osuma;
+		var tarkistettavarivi = omarivi;
+		var tarkistettavatnumerot = numerot;
+		var tarkistettavatlisanumerot = lisanumerot;
+		var rivi = "";
+		
 		if (this.valittujaNumeroitaMax != this.valittujaNumeroita)
 		{
 			alert("V‰‰r‰ m‰‰r‰ valittuja numeroita! LottoKonekin osaa yhteenlaskun paremmin kuin sin‰!"); 
 		}
-		
+
 		else 
 		{
-		document.getElementById(kohde).innerHTML = omarivi+numerot+lisanumerot+kohde;
+			rivi += "<table border=1><tr>";
+			for (i=0;i<tarkistettavatnumerot.length;i++)
+			{
+				osuma = 0;
+				for (ii=0;ii<this.valittujaNumeroitaMax;ii++)
+				{
+					if (tarkistettavatnumerot[ii] == tarkistettavarivi[i])
+					{
+						osuma = 1;
+					}
+				}	
+				if (osuma == 1)
+				{
+					rivi += "<td style=\"background-color:green\">"+tarkistettavatnumerot[i]+"</td>";
+				}
+				else
+				{
+					rivi += "<td>"+tarkistettavatnumerot[i]+"</td>";
+				}
+
+				
+			}
+			rivi += "</tr></table>";
+			
+			rivi += "<table border=1><tr>";
+			for (i=0;i<tarkistettavatlisanumerot.length;i++)
+			{
+				osuma = 0;
+				for (ii=0;ii<this.valittujaNumeroitaMax;ii++)
+				{
+					if (tarkistettavatlisanumerot[ii] == tarkistettavarivi[i])
+					{
+						osuma = 1;
+					}
+				}	
+				if (osuma == 1)
+				{
+					rivi += "<td style=\"background-color:green\">"+tarkistettavatlisanumerot[i]+"</td>";
+				}
+				else
+				{
+					rivi += "<td>"+tarkistettavatlisanumerot[i]+"</td>";
+				}
+
+				
+			}
+			rivi += "</tr></table>";
+			
+			
+			
+			document.getElementById(kohde).innerHTML = rivi;
 		}
 	}
-	
-	
-	
-	
 	haeNumerotRuudukosta(ruudukonNimi)
 	{
 	var i = 1;
@@ -200,8 +253,6 @@ class lottoRivi
 		if (document.getElementById(this.ruudukonNimi+"checbox"+ruudunNumero).checked == true)
 		{
 			this.valittujaNumeroita++;
-			//alert(this.valittujaNumeroitaMax);
-			
 			
 			if (this.valittujaNumeroitaMax == this.valittujaNumeroita)
 			{
@@ -211,7 +262,6 @@ class lottoRivi
 					{
 						document.getElementById(this.ruudukonNimi+"checbox"+i).disabled = true;
 					}
-				
 				}
 			}
 		}
@@ -223,14 +273,10 @@ class lottoRivi
 			{
 				for (i=1;i<this.lottoPallojenMaara;i++)
 				{
-	
-					document.getElementById(this.ruudukonNimi+"checbox"+i).disabled = false;
-					
-				
+					document.getElementById(this.ruudukonNimi+"checbox"+i).disabled = false;				
 				}
 			}
 		}
-
 	}
 }
 
