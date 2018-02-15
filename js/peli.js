@@ -4,13 +4,18 @@ class Peli
 	constructor()
 	{
 		this.pelaaja;
+		this.kuula;
 		this.palikat = [];
 		this.luoObjektit();
-		
+		this.peliAloitettu = 0;
+		this.kuulaSuunta = 0;
+		this.mailaOsumaKohta = 0;
+			
+		setInterval(function(){ peli.siirraObjekteja(); }, 5);
 		
 		document.addEventListener('keypress', (event) => {
 		const keyName = event.key;
-
+		this.peliAloitettu = 1;
 		if (keyName == 'd' && this.pelaaja.getX() < 440)
 		{
 			this.pelaaja.setXY(this.pelaaja.getX()+4,this.pelaaja.getY());
@@ -32,21 +37,19 @@ class Peli
 		var tools = new Tools();
 		
 		objektit +="<div class=\"container\">";
-		objektit +="<div id=\"pelaaja\"></div><div id=\"kuula\"></div>";
+		objektit +="<div id=\"pelaaja\"></div>";
 		
 		for (i=0;i<100;i++) // Html palikat
 		{
 			objektit += "<div id=\"vihu"+i+"\" class=\"palikat\" style=\"left:0;top:0;\"></div>";
 		}
 		
-		objektit += "</div>";
+		objektit += "</div><div id=\"kuula\"></div>";
 		
 		document.getElementById("peli").innerHTML = objektit;
-		
-		
+			
 		this.pelaaja = new Pelaaja(220,470,"pelaaja");
 		this.kuula = new Kuula(245,450,"kuula");
-	
 		
 		for (i=0;i<10;i++)
 		{
@@ -56,17 +59,60 @@ class Peli
 				this.palikat[iii].setColor(tools.uusiSatunnainenVari());
 				iii++;
 			}	
-		
 		}
 	}
 	
 	siirraObjekteja()
 	{
-		this.kuula.setXY(this.kuula.getX(),this.kuula.getY()-2);
+		var i;
+		//var osuma = false;
+		var tools = new Tools();
 		
+		if (this.peliAloitettu == 1)
+		{
+			for (i=0; i <this.palikat.length;i++)
+			{
+				if(this.kuula.getY() > 500)
+				{
+					this.peliAloitettu = 0;
+					this.pelaaja.setXY(220,470);
+					this.kuula.setXY(245,450);
+				}
+				if(this.kuula.getY() < 1)
+				{
+					this.kuulaSuunta = 1;
+				}
+				if (tools.intersectRect(tools.rectVals(this.kuula),tools.rectVals(this.palikat[i])) == true && document.getElementById("vihu"+i).style.display != "none")
+				{
+					document.getElementById("vihu"+i).style.display = "none";
+					this.kuulaSuunta = 1;
+					break;
+					
+				}
+				if (tools.intersectRect(tools.rectVals(this.kuula), tools.rectVals(this.pelaaja)) == true)
+				{
+					this.mailaOsumaKohta = (this.kuula.getX() - this.pelaaja.getX() - this.pelaaja.getW()/2 + this.kuula.getW()/2)/40;
+					this.kuulaSuunta = 0;
+				}		
+			}
+			if(this.kuula.getX() > 490)
+				{
+					this.mailaOsumaKohta = -this.mailaOsumaKohta;
+				}
+				if(this.kuula.getX() < 1)
+				{
+					this.mailaOsumaKohta = -this.mailaOsumaKohta;
+				}
+			if (this.kuulaSuunta == 0)
+			{
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-1);
+			}
+			else
+			{
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()+1);
+			}	
+		}	
 	}
-	
-	
 }
 class Tools
 {
@@ -81,9 +127,22 @@ class Tools
 		}
 		return color;
 	}
+	
+	intersectRect(r1, r2)
+	{
+		return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
+	}
+	rectVals(laatikko)
+	{
+		var loota = {left:0,top:0,right:0,bottom:0};
+		loota.left = laatikko.getX();
+		loota.top = laatikko.getY();
+		loota.right = laatikko.getX()+laatikko.getW();
+		loota.bottom = laatikko.getY()+laatikko.getH();
+		return loota;
+	}
+	
 }
-
-
 
 class Objekti
 {
@@ -109,6 +168,14 @@ class Objekti
 	{
 		return this.y;
 	}
+	getH()
+	{
+		return document.getElementById(this.elementtiID).clientHeight;
+	}
+	getW()
+	{
+		return document.getElementById(this.elementtiID).clientWidth;
+	}
 	setColor(vari)
 	{
 		document.getElementById(this.elementtiID).style.backgroundColor = vari;
@@ -121,8 +188,6 @@ class Pelaaja extends Objekti
 	{
 		super(x,y,elementtiID);
     }
-	
-	
 }
 
 class Kuula extends Objekti
@@ -131,8 +196,6 @@ class Kuula extends Objekti
 	{
 		super(x,y,elementtiID);
     }
-	
-	
 }
 
 class Palikka extends Objekti
@@ -140,7 +203,5 @@ class Palikka extends Objekti
 	constructor(x,y,elementtiID)
 	{
 		super(x,y,elementtiID);
-		
-
     }	
 }
