@@ -7,23 +7,32 @@ class Peli
 		this.kuula;
 		this.palikat = [];
 		this.peliAloitettu = -1;
-		this.kuulaSuunta = 0;
+		this.kuulaSuunta = 1;
 		this.mailaOsumaKohta = 0;
 		this.currentKey = '';
 		this.pistelaskuri = 0;
 		this.elamat = 3;
+		this.vaikeusaste = 0;
+		this.vaikeusasteLisa = 0.02; // 0.1 - 0.03
+		this.pelaajaMailaKayryys = 20; // Isompiluku = helpompi
+		this.palikoitaRiviin = 14;
+		this.palikoitaPystyyn = 10;
+		this.kentanLeveys = 700;
+		this.kentanKeskikohta = this.kentanLeveys/2;
+		this.melanLeveys = 70;
 		this.luoObjektit();
 			
 		setInterval(function(){ peli.siirraObjekteja(); }, 5);
 		
-		document.addEventListener('keypress', (event) => {
+		document.addEventListener('keydown', (event) => {
 			const keyName = event.key;
+			const keyNumber = event.keyCode;
 			this.peliAloitettu = 1;
-			if (keyName == 'd')
+			if (keyName == 'd' || keyNumber == 39)
 			{
 				this.currentKey = 'd';
 			}
-			else if (keyName == 'a')
+			else if (keyName == 'a' || keyNumber == 37)
 			{
 				this.currentKey = 'a';
 			}
@@ -47,10 +56,10 @@ class Peli
 		this.peliAloitettu = 0;
 		var tools = new Tools();
 		
-		objektit +="<div class=\"container\">";
+		objektit +="<div class=\"container\" id=\"container\">";
 		objektit +="<div id=\"pelaaja\"></div>";
 		
-		for (i=0;i<100;i++) // Html palikat
+		for (i=0;i<(this.palikoitaPystyyn*this.palikoitaRiviin);i++) // Html palikat
 		{
 			objektit += "<div id=\"vihu"+i+"\" class=\"palikat\" style=\"left:0;top:0;\"></div>";
 		}
@@ -58,16 +67,18 @@ class Peli
 		objektit += "</div><div id=\"kuula\"></div><div id=\"pisteet\"></div><div id=\"elamat\"></div></div>";
 		
 		document.getElementById("peli").innerHTML = objektit;
-		
+		document.getElementById("container").style.width = this.kentanLeveys+"px";
+		document.getElementById("pelaaja").style.width = this.melanLeveys+"px";
+		document.getElementById("elamat").style.left = this.kentanLeveys-70+"px";			
 		document.getElementById("pisteet").innerHTML = this.pistelaskuri;
 		document.getElementById("elamat").innerHTML = this.elamat;
 			
-		this.pelaaja = new Pelaaja(220,470,"pelaaja");
-		this.kuula = new Kuula(245,450,"kuula");
+		this.pelaaja = new Pelaaja(this.kentanKeskikohta-this.melanLeveys/2,470,"pelaaja");
+		this.kuula = new Kuula(this.kentanKeskikohta-10/2,450,"kuula");
 		
-		for (i=0;i<10;i++)
+		for (i=0;i<this.palikoitaRiviin;i++)
 		{
-			for (ii=0;ii<10;ii++)
+			for (ii=0;ii<this.palikoitaPystyyn;ii++)
 			{		
 				this.palikat.push(new Palikka(50*i,20*ii,"vihu"+iii));
 				this.palikat[iii].setColor(tools.uusiSatunnainenVari());
@@ -77,11 +88,12 @@ class Peli
 	}
 	uusiPeli()
 	{
+		this.vaikeusaste = 0;
 		this.peliAloitettu = 0;
 		this.pistelaskuri = 0;
 		this.elamat = 3;
-		this.pelaaja.setXY(220,470);
-		this.kuula.setXY(245,450);
+		this.pelaaja.setXY(this.kentanKeskikohta-this.melanLeveys/2,470);
+		this.kuula.setXY(this.kentanKeskikohta-10/2,450);
 		document.getElementById("pisteet").innerHTML = this.pistelaskuri;
 		document.getElementById("elamat").innerHTML = this.elamat;
 		this.luoObjektit();
@@ -108,8 +120,8 @@ class Peli
 					
 					document.getElementById("elamat").innerHTML = this.elamat;
 					this.peliAloitettu = 0;
-					this.pelaaja.setXY(220,470);
-					this.kuula.setXY(245,450);
+					this.pelaaja.setXY(this.kentanKeskikohta-this.melanLeveys/2,470);
+					this.kuula.setXY(this.kentanKeskikohta-10/2,450);
 				}
 				if(this.kuula.getY() < 1)
 				{
@@ -118,6 +130,7 @@ class Peli
 				if (tools.intersectRect(tools.rectVals(this.kuula),tools.rectVals(this.palikat[i])) == true && document.getElementById("vihu"+i).style.display != "none")
 				{
 					this.pistelaskuri = this.pistelaskuri +1;
+					this.vaikeusaste = this.vaikeusaste + this.vaikeusasteLisa;
 					document.getElementById("pisteet").innerHTML = this.pistelaskuri;
 					document.getElementById("vihu"+i).style.display = "none";
 					this.kuulaSuunta = 1;
@@ -126,11 +139,11 @@ class Peli
 				}
 				if (tools.intersectRect(tools.rectVals(this.kuula), tools.rectVals(this.pelaaja)) == true)
 				{
-					this.mailaOsumaKohta = (this.kuula.getX() - this.pelaaja.getX() - this.pelaaja.getW()/2 + this.kuula.getW()/2)/40;
+					this.mailaOsumaKohta = (this.kuula.getX() - this.pelaaja.getX() - this.pelaaja.getW()/2 + this.kuula.getW()/2)/this.pelaajaMailaKayryys;
 					this.kuulaSuunta = 0;
 				}		
 			}
-			if(this.kuula.getX() > 490)
+			if(this.kuula.getX() > this.kentanLeveys-this.kuula.getW())
 				{
 					this.mailaOsumaKohta = -this.mailaOsumaKohta;
 				}
@@ -140,13 +153,13 @@ class Peli
 				}
 			if (this.kuulaSuunta == 0)
 			{
-				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-1);
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-(1+this.vaikeusaste));
 			}
 			else
 			{
-				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()+1);
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()+(1+this.vaikeusaste));
 			}	
-			if (this.currentKey == 'd' && this.pelaaja.getX() < 500-this.pelaaja.getW())
+			if (this.currentKey == 'd' && this.pelaaja.getX() < this.kentanLeveys-this.pelaaja.getW())
 			{
 				this.pelaaja.setXY(this.pelaaja.getX()+1,this.pelaaja.getY());
 			}
