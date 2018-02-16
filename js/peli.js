@@ -57,7 +57,7 @@ class Peli
 		var tools = new Tools();
 		
 		objektit +="<div class=\"container\" id=\"container\">";
-		objektit +="<div id=\"pelaaja\"></div>";
+		objektit +="<div id=\"pelaaja\">I</div>";
 		
 		for (i=0;i<(this.palikoitaPystyyn*this.palikoitaRiviin);i++) // Html palikat
 		{
