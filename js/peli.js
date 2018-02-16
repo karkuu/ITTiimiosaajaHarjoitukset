@@ -13,10 +13,11 @@ class Peli
 		this.pistelaskuri = 0;
 		this.elamat = 3;
 		this.vaikeusaste = 0;
-		this.vaikeusasteLisa = 0.02; // 0.1 - 0.03
-		this.pelaajaMailaKayryys = 20; // Isompiluku = helpompi
 		this.palikoitaRiviin = 14;
 		this.palikoitaPystyyn = 10;
+		this.vaikeusAste = 2; // 1-3 on sopiva
+		this.vaikeusasteLisa = this.vaikeusAste/(this.palikoitaRiviin*this.palikoitaPystyyn);
+		this.pelaajaMailaKayryys = 25; // 20-30 Isompiluku = helpompi.
 		this.kentanLeveys = 700;
 		this.kentanKeskikohta = this.kentanLeveys/2;
 		this.melanLeveys = 70;
@@ -153,7 +154,7 @@ class Peli
 				}
 			if (this.kuulaSuunta == 0)
 			{
-				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-(1+this.vaikeusaste));
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-(1+(this.vaikeusaste/2))/);
 			}
 			else
 			{
