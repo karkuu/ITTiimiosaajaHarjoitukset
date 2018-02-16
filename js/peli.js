@@ -18,11 +18,11 @@ class Peli
 		this.peliAloitettu = 1;
 		if (keyName == 'd' && this.pelaaja.getX() < 440)
 		{
-			this.pelaaja.setXY(this.pelaaja.getX()+4,this.pelaaja.getY());
+			this.pelaaja.setXY(this.pelaaja.getX()+6,this.pelaaja.getY());
 		}
 		if (keyName == 'a' && this.pelaaja.getX() > 0)
 		{
-			this.pelaaja.setXY(this.pelaaja.getX()-4,this.pelaaja.getY());
+			this.pelaaja.setXY(this.pelaaja.getX()-6,this.pelaaja.getY());
 		}
 		});
     }
@@ -65,7 +65,6 @@ class Peli
 	siirraObjekteja()
 	{
 		var i;
-		//var osuma = false;
 		var tools = new Tools();
 		
 		if (this.peliAloitettu == 1)
