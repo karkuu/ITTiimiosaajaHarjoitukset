@@ -154,7 +154,7 @@ class Peli
 				}
 			if (this.kuulaSuunta == 0)
 			{
-				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-(1+(this.vaikeusaste/2))/);
+				this.kuula.setXY(this.kuula.getX()+this.mailaOsumaKohta,this.kuula.getY()-(1+(this.vaikeusaste/2)));
 			}
 			else
 			{
