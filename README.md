@@ -5,4 +5,4 @@ Kurssin pieniä yksittäisiä harjoituksia.
 - js
   - lotto
   - numeron arvaaminen
-  - peli
+  - peli (Breakout)
