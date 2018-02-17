@@ -1,0 +1,88 @@
+#ylapalkki
+{
+	color:green;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	background-color: lightgreen;
+	width: 100%;
+	position:fixed;
+	
+}
+#paaotsikko
+{
+	display:inline-block;
+	height:30px;
+}
+#menu
+{
+	background-color: lightblue;
+	color:green;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	width: 60px;
+	height:30px;
+	float:left;
+	text-align:center;
+	display:inline-block;
+	padding-top:10px;
+
+}
+#paaotsikko p
+{
+	display:inline-block;
+	padding-left:10px;
+}
+#menu p
+{
+	display:inline;
+}
+
+#valikko
+{
+	color:blue;
+	
+}
+#kirjautuminen
+{
+	color:black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: red;
+	width: 100%;
+	float:right;
+	margin-left: 10px;	
+}
+#kirjautuminen div
+{
+	text-align: center;
+	padding: 3px 3px;
+}
+#tunnukset label
+{
+	display: inline-block;
+	
+}
+#tunnukset .tekstikentta
+{
+	width: 70px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+#pikavalinnat
+{
+	display:none;
+}
+#maincontent
+{
+	position:relative;
+	top:68px;
+	background-color: #ee55bb;
+	width: 100%;
+	z-index:-1;
+}
+#maincontent div
+{
+	padding:10px 20px;
+	background-color: #bbee55;
+}
+
