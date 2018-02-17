@@ -6,3 +6,5 @@ Kurssin pieniä yksittäisiä harjoituksia.
   - lotto
   - numeron arvaaminen
   - peli (Breakout)
+- html
+  - responsiivinen html-sivu
