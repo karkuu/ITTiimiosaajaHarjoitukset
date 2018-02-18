@@ -48,3 +48,10 @@
 	display: none;
 	
 }
+
+.mainparent table, .mainchild table
+{
+	width: 100%;
+}
+
+
