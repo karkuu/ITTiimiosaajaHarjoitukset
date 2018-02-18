@@ -8,6 +8,7 @@ Kurssin pieniä yksittäisiä harjoituksia.
   - peli (Breakout)
 - html
   - responsiivisia html-sivupohjia
-    - sivusto 1
-    - sivusto 2
-    - sivusto 3
+    - sivusto 1 (perus pikavalikolla)
+    - sivusto 2 (viesti/ilmoitus palkki)
+    - sivusto 3 (ampparit -tyylinen)
+    - sivusto 4 (linkit ikoneiksi)
