@@ -1,0 +1,11 @@
+.menu a
+{
+ display: inline-block;
+
+ height: 20px;
+ width: 20px;
+ line-height: 0; 
+ font-size: 0;
+ color: transparent; 
+ background-color: white;
+}

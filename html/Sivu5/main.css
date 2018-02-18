@@ -1,0 +1,50 @@
+.otsikko
+{
+	color:green;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	padding:5px;
+	
+	width: 100%;
+	background-color: lightgreen;
+}
+.menu
+{
+	width: 100%;
+	background-color: lightblue;
+}
+.linkit
+{
+	float:left;
+	width: 50%;
+	background-color: pink;
+}
+.kayttaja
+{
+	float:left;
+	width: 50%;
+	background-color: olive;
+}
+.main
+{
+
+	width: 100%;
+	background-color: maroon;
+}
+.mainparent
+{
+	float:left;
+	width: 50%;
+	background-color: yellow;
+}
+.mainchild
+{
+	float:left;
+	width: 50%;
+	background-color: lightgrey;
+}
+.menu a img
+{
+	display: none;
+	
+}
