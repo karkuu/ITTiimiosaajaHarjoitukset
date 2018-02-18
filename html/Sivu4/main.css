@@ -1,0 +1,53 @@
+.paaotsikko
+{
+	background-color: lightgreen;
+	
+	color:green;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	padding:5px;
+	
+	width: 100%;
+	
+}
+
+.menut
+{
+	padding:5px;
+	height:15px;
+	
+	background-color: green;
+}
+.menu
+{
+	float:left;
+	width: 50%;
+	
+	background-color: yellow;
+}
+
+.menut a img
+{
+	display: none;
+	
+}
+
+
+
+.kirjautuminen
+{
+	
+	float:left;
+	width: 50%;
+	text-align: right;
+	
+	
+	background-color: lightblue;
+}
+.main
+{
+	padding:5px;
+	width: 100%;
+	float:left;
+	background-color: lightgrey;
+}
