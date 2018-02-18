@@ -7,4 +7,7 @@ Kurssin pieniä yksittäisiä harjoituksia.
   - numeron arvaaminen
   - peli (Breakout)
 - html
-  - responsiivinen html-sivu
+  - responsiivisia html-sivupohjia
+    - sivusto 1
+    - sivusto 2
+    - sivusto 3
