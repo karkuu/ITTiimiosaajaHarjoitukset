@@ -1,0 +1,50 @@
+.otsikko
+{
+	position:fixed;
+	width:100%;
+	height:70px;
+	background-color: lightblue;
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+.container
+{
+	width:100%;
+	background-color: lightgreen;
+	
+}
+.valikko
+{
+	position:fixed;
+	margin-top:70px;
+	width:200px;
+	background-color: yellow;
+}
+.uudet
+{
+	position:fixed;
+	margin-top:70px;
+	right:0px;
+	width:200px;
+	background-color: pink;
+}
+.uudetilmoitukset
+{
+	
+	background-color: lightgrey;
+}
+.uudetviestit
+{
+	
+	background-color: olive;
+}
+.main
+{
+	margin-left:200px;
+	margin-right:200px;
+	background-color: grey;
+}
+
+
+

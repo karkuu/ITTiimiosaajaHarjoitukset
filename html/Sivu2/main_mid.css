@@ -1,0 +1,90 @@
+.menu
+{
+	display:inline-block;
+	float:left;
+	width: 70px;
+	height:50px;
+	padding-top: 10px;
+	
+	background-color:lightgrey;
+	color:black;
+	
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	
+}
+.otsikko
+{
+	
+	height:40px;
+	padding-top: 20px;
+	margin-left: 70px;
+	padding-left: 10px;
+	
+	background-color:lightblue;
+	color:black;
+	
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.kirjautuminen
+{
+	display:inline-block;
+	float:left;
+	height:22px;
+	width:100%;
+	
+	text-align: right;
+	
+	background-color:lightgreen;
+	color:black;
+}
+.kirjautuminen div
+{
+	padding-right: 10px;
+	
+}
+.kirjtekstikentta
+{
+	width: 70px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.maincontainer
+{
+	background-color:red;
+}
+
+.uudet
+{
+	background-color:white;
+	float:right;
+	width:300px;
+}
+
+.uudetilmoitukset
+{
+	height:300px;
+	margin:10px;
+	
+	background-color:yellow;	
+}
+.uudetviestit
+{
+	height:300px;
+	margin:10px;
+	
+	background-color:maroon;
+}
+.main
+{
+	
+}
+
+
+
+
+
+
+

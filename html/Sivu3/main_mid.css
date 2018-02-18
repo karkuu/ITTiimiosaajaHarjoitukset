@@ -1,0 +1,53 @@
+.otsikko
+{
+	width:100%;
+	height:50px;
+	position:fixed;
+	
+	background-color: lightblue;
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+.container
+{
+	width:100%;
+	background-color: lightgreen;
+	
+}
+.valikko
+{
+	position:fixed;
+	width:200px;
+	height:130px;
+	top:50px;
+	background-color: yellow;
+}
+.uudet
+{
+	position:fixed;
+	top:180px;
+	width:200px;
+	background-color: pink;
+}
+.uudetilmoitukset
+{
+	
+	background-color: lightgrey;
+}
+.uudetviestit
+{
+	
+	background-color: olive;
+}
+.main
+{
+	display:inline-block;
+	float:right;
+	margin-left:200px;
+	margin-top:50px;
+	background-color: grey;
+}
+
+
+
