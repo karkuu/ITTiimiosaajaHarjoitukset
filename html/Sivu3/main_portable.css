@@ -24,13 +24,18 @@
 	height: 30px;
 	background-color: yellow;
 }
+.valikko a
+{
+	text-decoration: none;
+}
+.valikko a:after
+{
+    content: ' ';
+	
+}
 .valikko br
 {
-	display: inline;
-	content: " ";
-}
-br:after {
-    content: ' '
+	display: none;
 }
 .uudet
 {
