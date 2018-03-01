@@ -23,8 +23,10 @@ app.use(bodyParser.json());
 let contactList = [];
 let id=100;
 
-const pgQuery = 'SELECT * FROM customers';
-
+const pgQuery = 'SELECT * FROM employees';
+const pgQueryInsert = "INSERT INTO employees (employeeid, firstname, lastname, city, homephone) VALUES (nextval('emp'), $1, $2, $3, $4)";
+const pgQueryDelete = "DELETE FROM employees WHERE employeeid=";
+let values = ["","","",""];
 let queryContents;
 //REST api
 
@@ -36,13 +38,13 @@ client.connect();
 
 app.get("/api/contacts", function(req,res)
 {
+	contactList = [];
 	let tempContact = {
-					"id":"",
-					"customerid":"",
-					"firstName":"",
-					"company":"",
+					"employeeid":"",
+					"firstname":"",
+					"lastname":"",
 					"city":"",
-					"phone":""
+					"homephone":""
 					};
 	client.query(pgQuery)
 		.then(pgres => {
@@ -50,12 +52,11 @@ app.get("/api/contacts", function(req,res)
 			for (let i=0;i<pgres.rows.length;i++)
 			{
 					tempContact = {
-					"id":id.toString(),
-					"customerid":pgres.rows[i].customerid,
-					"firstName":pgres.rows[i].contactname,
-					"company":pgres.rows[i].companyname,
+					"employeeid":pgres.rows[i].employeeid,
+					"firstname":pgres.rows[i].firstname,
+					"lastname":pgres.rows[i].lastname,
 					"city":pgres.rows[i].city,
-					"phone":pgres.rows[i].phone
+					"homephone":pgres.rows[i].homephone
 	
 					};
 				contactList.push(tempContact);
@@ -69,32 +70,48 @@ app.get("/api/contacts", function(req,res)
   .catch(e => console.error(e.stack));	
 });
 
-app.post("/api/contact", function(req,res) {
+app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
+	/*let contact = {
+		"firstname":req.body.firstname,
+		"lastname":req.body.lastname,
+		"city":req.body.city,
+		"homephone":req.body.homephone	
+	}*/
 	console.log(req.body);
-	let contact = {
-		id:id,
-		firstName: req.body.firstName,
-		company: req.body.company,
-		city:req.body.city,
-		phone:req.body.phone
-	}
-	id++;
-	contactList.push(contact);
+	values[0] = req.body.firstname;
+	values[1] = req.body.lastname;
+	values[2] = req.body.city;
+	values[3] = req.body.homephone;
+	
+	client.query(pgQueryDelete,values)
+		.then(pgQueryInsert => {
+			
+	console.log("lisätty");
+  })
+  .catch(e => console.error(e.stack));	
+	
+	
+	
+	
+	
 	res.status(200).json({"message":"success"});
 });
 
 app.delete("/api/contact/:id", function(req,res) {
 	console.log("Delete contact:"+req.params.id);
 	let tempId = req.params.id;
-	for (let i = 0; i < contactList.length; i++) {
-		if(tempId == contactList[i].id) {
-			contactList.splice(i,1);
-			return res.status(200).json({"message":"success"});
-		}
-		
-	}
-	res.status(404).json({"message":"not found"});
+	
+	client.query(pgQueryDelete+tempId)
+		.then(pgQueryInsert => {
+			
+	console.log("Poistettu");
+  })
+  .catch(e => console.error(e.stack));	
+	
+	
+	
+	res.status(200).json({"message":"Deleted"+tempId});
 });
 
 //Startup

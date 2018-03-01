@@ -9,13 +9,13 @@ export default class ContactList extends React.Component {
 	
 	render() {
 		let listItems = this.props.contactList.map((item) => 
-			<tr key={item.id}>
-				<td>{item.firstName}</td>
-				<td>{item.company}</td>
+			<tr key={item.employeeid}>
+				<td>{item.firstname}</td>
+				<td>{item.lastname}</td>
 				<td>{item.city}</td>
-				<td>{item.phone}</td>
+				<td>{item.homephone}</td>
 				<td><Button onClick={this.deleteContact}
-							name={item.id.toString()}>Remove
+							name={item.employeeid.toString()}>Remove
 				    </Button></td>
 			</tr>
 		)
@@ -26,9 +26,9 @@ export default class ContactList extends React.Component {
 				<thead>
 					<tr>
 						<th>First Name</th>
-						<th>Company</th>
+						<th>Last Name</th>
 						<th>City</th>
-						<th>Phone</th>
+						<th>homephone</th>
 						<th>Remove</th>
 					</tr>
 				</thead>

@@ -6,23 +6,24 @@ export default class ContactForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state= {
-			firstName:"",
-			company:"",
+			employeeid:"",
+			firstname:"",
+			lastname:"",
 			city:"",
-			phone:""
+			homephone:""
 		}
 	
 	}
 	
 	change = (event) => {
-		if (event.target.name === "firstName") {
+		if (event.target.name === "firstname") {
 			this.setState({
-				firstName:event.target.value
+				firstname:event.target.value
 			})
 		}
-		if (event.target.name === "company") {
+		if (event.target.name === "lastname") {
 			this.setState({
-				company:event.target.value
+				lastname:event.target.value
 			})
 		}
 		if (event.target.name === "city") {
@@ -30,9 +31,9 @@ export default class ContactForm extends React.Component {
 				city:event.target.value
 			})
 		}
-		if (event.target.name === "phone") {
+		if (event.target.name === "homephone") {
 			this.setState({
-				phone:event.target.value
+				homephone:event.target.value
 			})
 		}		
 	}
@@ -40,10 +41,11 @@ export default class ContactForm extends React.Component {
 	submit = (event) => {
 		event.preventDefault();
 		let contact= {
-			"firstName":this.state.firstName,
-			"company":this.state.company,
-			"city":this.state.email,
-			"phone":this.state.phone		
+			"employeeid":this.state.employeeid,
+			"firstname":this.state.firstname,
+			"lastname":this.state.lastname,
+			"city":this.state.city,
+			"homephone":this.state.homephone		
 		}
 		this.props.updateContacts(contact);		
 	}
@@ -51,17 +53,17 @@ export default class ContactForm extends React.Component {
 	render() {
 		return(
 			<form onSubmit={this.submit}>
-				<Label htmlFor="firstName">First Name:</Label>
+				<Label htmlFor="firstname">First Name:</Label>
 				<input type="text"
-					   name="firstName"
+					   name="firstname"
 					   onChange={this.change}
-					   value={this.state.firstName}/>
+					   value={this.state.firstname}/>
 				<br/>
-				<Label htmlFor="company">Company</Label>
+				<Label htmlFor="lastname">Last Name:</Label>
 				<input type="text"
-					   name="company"
+					   name="lastname"
 					   onChange={this.change}
-					   value={this.state.company}/>
+					   value={this.state.lastname}/>
 				<br/>
 				<Label htmlFor="city">City:</Label>
 				<input type="text"
@@ -69,11 +71,11 @@ export default class ContactForm extends React.Component {
 					   onChange={this.change}
 					   value={this.state.city}/>
 				<br/>
-				<Label htmlFor="phone">Phone:</Label>
+				<Label htmlFor="homephone">homephone:</Label>
 				<input type="text"
-					   name="phone"
+					   name="homephone"
 					   onChange={this.change}
-					   value={this.state.phone}/>
+					   value={this.state.homephone}/>
 				<br/>
 				<input type="submit" value="Add Contact"/>
 			</form>

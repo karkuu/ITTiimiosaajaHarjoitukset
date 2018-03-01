@@ -18,12 +18,10 @@ export default class Container extends React.Component {
 		let fetchObject = {
 			method: "GET",
 			mode: "cors",
-			headers:{"Content-Type":"json"}
+			headers:{"Content-Type":"application/json"}
 		}
-		console.log("Error:");
 		fetch("/api/contacts", fetchObject).then((response) =>
 		{
-			console.log(response);
 			if(response.ok) {
 				response.json().then((data) => {
 					this.setState({
@@ -37,21 +35,26 @@ export default class Container extends React.Component {
 	}
 	
 	updateContacts = (contact) => {
+		
+		
 		let fetchObject = {
 			method: "POST",
 			mode: "cors",
 			headers:{"Content-Type":"application/json"},
 			body:JSON.stringify({
-				"firstName":contact.firstName,
-				"company":contact.company,
-				"city":contact.email,
-				"phone":contact.phone
+				"employeeid":contact.employeeid,
+				"firstname":contact.firstname,
+				"lastname":contact.lastname,
+				"city":contact.city,
+				"homephone":contact.homephone
 			})
 		}
+		console.log(fetchObject.body);
+		
 		fetch("/api/contacts",fetchObject).then((response) => {
 				if(response.ok) {
 					response.json().then((data) => {
-						console.log(data);
+						
 						this.getContacts();
 					})
 				}
@@ -61,6 +64,7 @@ export default class Container extends React.Component {
 	}
 	
 	deleteContact = (id) => {
+		console.log(id);
 		let fetchObject = {
 			method:"DELETE",
 			mode:"cors",
@@ -69,7 +73,7 @@ export default class Container extends React.Component {
 		fetch("/api/contact/"+id,fetchObject).then((response) => {
 			if(response.ok){
 					console.log("Success!!");
-					this.getContacts();
+				this.getContacts();
 			} else {
 					console.log("Not Found!!");
 			}			
