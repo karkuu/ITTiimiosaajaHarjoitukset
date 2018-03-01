@@ -11,8 +11,8 @@ export default class ContactList extends React.Component {
 		let listItems = this.props.contactList.map((item) => 
 			<tr key={item.id}>
 				<td>{item.firstName}</td>
-				<td>{item.lastName}</td>
-				<td>{item.email}</td>
+				<td>{item.company}</td>
+				<td>{item.city}</td>
 				<td>{item.phone}</td>
 				<td><Button onClick={this.deleteContact}
 							name={item.id.toString()}>Remove
@@ -26,8 +26,8 @@ export default class ContactList extends React.Component {
 				<thead>
 					<tr>
 						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Email</th>
+						<th>Company</th>
+						<th>City</th>
 						<th>Phone</th>
 						<th>Remove</th>
 					</tr>

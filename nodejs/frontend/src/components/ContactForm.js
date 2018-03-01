@@ -7,8 +7,8 @@ export default class ContactForm extends React.Component {
 		super(props);
 		this.state= {
 			firstName:"",
-			lastName:"",
-			email:"",
+			company:"",
+			city:"",
 			phone:""
 		}
 	
@@ -20,14 +20,14 @@ export default class ContactForm extends React.Component {
 				firstName:event.target.value
 			})
 		}
-		if (event.target.name === "lastName") {
+		if (event.target.name === "company") {
 			this.setState({
-				lastName:event.target.value
+				company:event.target.value
 			})
 		}
-		if (event.target.name === "email") {
+		if (event.target.name === "city") {
 			this.setState({
-				email:event.target.value
+				city:event.target.value
 			})
 		}
 		if (event.target.name === "phone") {
@@ -41,8 +41,8 @@ export default class ContactForm extends React.Component {
 		event.preventDefault();
 		let contact= {
 			"firstName":this.state.firstName,
-			"lastName":this.state.lastName,
-			"email":this.state.email,
+			"company":this.state.company,
+			"city":this.state.email,
 			"phone":this.state.phone		
 		}
 		this.props.updateContacts(contact);		
@@ -57,17 +57,17 @@ export default class ContactForm extends React.Component {
 					   onChange={this.change}
 					   value={this.state.firstName}/>
 				<br/>
-				<Label htmlFor="lastName">Last Name:</Label>
+				<Label htmlFor="company">Company</Label>
 				<input type="text"
-					   name="lastName"
+					   name="company"
 					   onChange={this.change}
-					   value={this.state.lastName}/>
+					   value={this.state.company}/>
 				<br/>
-				<Label htmlFor="email">Email:</Label>
-				<input type="email"
-					   name="email"
+				<Label htmlFor="city">City:</Label>
+				<input type="text"
+					   name="city"
 					   onChange={this.change}
-					   value={this.state.email}/>
+					   value={this.state.city}/>
 				<br/>
 				<Label htmlFor="phone">Phone:</Label>
 				<input type="text"
