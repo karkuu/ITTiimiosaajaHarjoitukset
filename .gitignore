@@ -1,2 +1,2 @@
 
-nodejs/backend/node_modules/.bin/mime
+nodejs/backend/node_modules/**
