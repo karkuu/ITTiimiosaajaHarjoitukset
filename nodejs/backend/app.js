@@ -29,7 +29,8 @@ let id=100;
 const pgQuery = 'SELECT * FROM employees';
 const pgQueryInsert = "INSERT INTO employees (employeeid, firstname, lastname, city, homephone) VALUES (nextval('emp'), $1, $2, $3, $4)";
 const pgQueryDelete = "DELETE FROM employees WHERE employeeid=";
-let values = ["","","",""];
+const pgQueryUpdate = "UPDATE employees SET firstname=$2, lastname=$3, city=$4, homephone=$5 WHERE employeeid=$1";
+let values = [];
 let queryContents;
 //REST api
 
@@ -74,7 +75,6 @@ app.get("/api/contacts", function(req,res)
 
 app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
-	
 	/*  Tarvitaan tiedon updatessa
 	let contact = {
 		"firstname":req.body.firstname,
@@ -114,6 +114,28 @@ app.delete("/api/contact/:id", function(req,res) {
 	
 	
 	res.status(200).json({"message":"Deleted"+tempId}); // Clienttiin tieto, että poisto onnistui
+});
+
+app.put("/api/contact/:id", function(req,res) {
+	console.log("Update :"+req.params.id); // Consoleen Päivityksen tiedot
+	let tempId = req.params.id; // Päivitettävä id temppiin
+	values[0] = tempId;
+	values[1] = req.body.firstname;
+	values[2] = req.body.lastname;
+	values[3] = req.body.city;
+	values[4] = req.body.homephone;
+	
+	//Promise
+	client.query(pgQueryUpdate,values) // Tietokantapäivitys
+		.then(pgQueryInsert => {
+			
+		console.log("Päivitetty "); // Konsoliin viesti, jos onnistui
+	})
+	.catch(e => console.error(e.stack)); // Consoleen virheilmoitukset
+		
+	
+	
+	res.status(200).json({"message":"Updated "+tempId}); // Clienttiin tieto, että poisto onnistui
 });
 
 //Startup

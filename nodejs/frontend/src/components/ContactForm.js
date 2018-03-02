@@ -43,25 +43,6 @@ export default class ContactForm extends React.Component {
 		this.update();		
 	}
 	
-	/*updateContactForm = (event) => {
-		let tempPerson
-		for(let i=0; i < this.props.contactList.length;i++)
-		{
-			if (this.props.contactList[i].employeeid === event.target.name)
-			{
-				tempPerson = {
-					employeeid:"",
-					firstname:this.props.contactList[i].firstname,
-					lastname:this.props.contactList[i].lastname,
-					city:this.props.contactList[i].city,
-					homephone:this.props.contactList[i].homephone
-				}
-			}
-				
-		}
-		this.props.updateTempContact(tempPerson);
-	}*/
-	
 	update = () => {
 		
 		

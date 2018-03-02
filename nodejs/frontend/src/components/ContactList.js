@@ -7,8 +7,8 @@ export default class ContactList extends React.Component {
 		this.props.deleteContact(event.target.name);	
 	}
 	
-	updateContactDetails = () => {
-		this.props.updateContactDetails();	
+	updateContactDetails = (event) => {
+		this.props.updateContactDetails(event.target.name);	
 	}
 	
 	render() {

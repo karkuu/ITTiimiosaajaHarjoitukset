@@ -71,7 +71,6 @@ export default class Container extends React.Component {
 	}
 	
 	deleteContact = (id) => {
-		console.log(id);
 		let fetchObject = {
 			method:"DELETE",
 			mode:"cors",
@@ -98,9 +97,30 @@ export default class Container extends React.Component {
 		
 	}
 	
-	updateContactDetails = () => {
-	alert("Päivitä tempContact tietokantaan TODO");
-		console.log(this.state.tempContact);
+	updateContactDetails = (id) => {
+		let fetchObject = {
+			method:"PUT",
+			mode:"cors",
+			headers:{"Content-Type":"application/json"},
+			body:JSON.stringify({
+				"employeeid":this.state.tempContact.employeeid,
+				"firstname":this.state.tempContact.firstname,
+				"lastname":this.state.tempContact.lastname,
+				"city":this.state.tempContact.city,
+				"homephone":this.state.tempContact.homephone
+			})
+			
+		}
+		fetch("/api/contact/"+id,fetchObject).then((response) => {
+			if(response.ok){
+					console.log("Success!!");
+				this.getContacts();
+			} else {
+					console.log("Not Found!!");
+			}			
+		}).catch((error) => {
+			console.log(error);
+		});
 	}
 
 	render() {
