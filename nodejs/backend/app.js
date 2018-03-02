@@ -72,19 +72,19 @@ app.get("/api/contacts", function(req,res)
 
 app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
-	/*let contact = {
+	let contact = {
 		"firstname":req.body.firstname,
 		"lastname":req.body.lastname,
 		"city":req.body.city,
 		"homephone":req.body.homephone	
-	}*/
+	}
 	console.log(req.body);
 	values[0] = req.body.firstname;
 	values[1] = req.body.lastname;
 	values[2] = req.body.city;
 	values[3] = req.body.homephone;
 	
-	client.query(pgQueryDelete,values)
+	client.query(pgQueryInsert,values)
 		.then(pgQueryInsert => {
 			
 	console.log("lisätty");
