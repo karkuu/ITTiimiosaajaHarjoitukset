@@ -15,7 +15,11 @@ export default class ContactForm extends React.Component {
 	
 	}
 	
+
+	
 	change = (event) => {
+		
+			
 		if (event.target.name === "firstname") {
 			this.setState({
 				firstname:event.target.value
@@ -35,7 +39,42 @@ export default class ContactForm extends React.Component {
 			this.setState({
 				homephone:event.target.value
 			})
-		}		
+		}	
+		this.update();		
+	}
+	
+	/*updateContactForm = (event) => {
+		let tempPerson
+		for(let i=0; i < this.props.contactList.length;i++)
+		{
+			if (this.props.contactList[i].employeeid === event.target.name)
+			{
+				tempPerson = {
+					employeeid:"",
+					firstname:this.props.contactList[i].firstname,
+					lastname:this.props.contactList[i].lastname,
+					city:this.props.contactList[i].city,
+					homephone:this.props.contactList[i].homephone
+				}
+			}
+				
+		}
+		this.props.updateTempContact(tempPerson);
+	}*/
+	
+	update = () => {
+		
+		
+	let tempPerson  = 
+	{
+		employeeid:this.state.employeeid,
+		firstname:this.state.firstname,
+		lastname:this.state.lastname,
+		city:this.state.city,
+		homephone:this.state.homephone
+	}
+
+		this.props.updateTempContact(tempPerson);
 	}
 	
 	submit = (event) => {
@@ -77,7 +116,7 @@ export default class ContactForm extends React.Component {
 					   onChange={this.change}
 					   value={this.state.homephone}/>
 				<br/>
-				<input type="submit" value="Add Contact"/>
+				<input id="Save" type="submit" value="Save"/>
 			</form>
 				)
 		

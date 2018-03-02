@@ -7,15 +7,23 @@ export default class ContactList extends React.Component {
 		this.props.deleteContact(event.target.name);	
 	}
 	
+	updateContactDetails = () => {
+		this.props.updateContactDetails();	
+	}
+	
 	render() {
 		let listItems = this.props.contactList.map((item) => 
 			<tr key={item.employeeid}>
+				<td>{item.employeeid}</td>
 				<td>{item.firstname}</td>
 				<td>{item.lastname}</td>
 				<td>{item.city}</td>
 				<td>{item.homephone}</td>
 				<td><Button onClick={this.deleteContact}
 							name={item.employeeid.toString()}>Remove
+				    </Button></td>
+				<td><Button onClick={this.updateContactDetails}
+							name={item.employeeid.toString()}>Update
 				    </Button></td>
 			</tr>
 		)
@@ -25,11 +33,14 @@ export default class ContactList extends React.Component {
 			<Table striped bordered>
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>City</th>
-						<th>homephone</th>
+						<th>Home Phone</th>
 						<th>Remove</th>
+						<th>Update</th>
+						
 					</tr>
 				</thead>
 				<tbody>
