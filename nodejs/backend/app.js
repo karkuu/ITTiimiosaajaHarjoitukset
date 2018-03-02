@@ -75,13 +75,6 @@ app.get("/api/contacts", function(req,res)
 
 app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
-	/*  Tarvitaan tiedon updatessa
-	let contact = {
-		"firstname":req.body.firstname,
-		"lastname":req.body.lastname,
-		"city":req.body.city,
-		"homephone":req.body.homephone	
-	}*/
 	
 	// Pistetään req body arrayhin joka syötetään tietokantakyselyyn parametreiksi
 	values[0] = req.body.firstname;
@@ -119,6 +112,7 @@ app.delete("/api/contact/:id", function(req,res) {
 app.put("/api/contact/:id", function(req,res) {
 	console.log("Update :"+req.params.id); // Consoleen Päivityksen tiedot
 	let tempId = req.params.id; // Päivitettävä id temppiin
+	
 	values[0] = tempId;
 	values[1] = req.body.firstname;
 	values[2] = req.body.lastname;
