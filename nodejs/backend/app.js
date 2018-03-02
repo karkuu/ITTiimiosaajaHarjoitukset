@@ -23,14 +23,14 @@ app.use(bodyParser.json());
 
 let contactList = [];
 let id=100;
-
+let values = [];
 
 // Tietokantahaut
 const pgQuery = 'SELECT * FROM employees';
 const pgQueryInsert = "INSERT INTO employees (employeeid, firstname, lastname, city, homephone) VALUES (nextval('emp'), $1, $2, $3, $4)";
 const pgQueryDelete = "DELETE FROM employees WHERE employeeid=";
 const pgQueryUpdate = "UPDATE employees SET firstname=$2, lastname=$3, city=$4, homephone=$5 WHERE employeeid=$1";
-let values = [];
+
 let queryContents;
 //REST api
 
@@ -76,6 +76,8 @@ app.get("/api/contacts", function(req,res)
 app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
 	
+	let values = ["","","",""];
+	
 	// Pistetään req body arrayhin joka syötetään tietokantakyselyyn parametreiksi
 	values[0] = req.body.firstname;
 	values[1] = req.body.lastname;
@@ -95,6 +97,8 @@ app.post("/api/contacts", function(req,res) {
 
 app.delete("/api/contact/:id", function(req,res) {
 	console.log("Delete contact:"+req.params.id); // Consoleen deleten tiedot
+		let values = ["","","","",""];
+	
 	let tempId = req.params.id; // Poistettava id temppiin
 	
 	client.query(pgQueryDelete+tempId) // Tietokantaqueryn perään poistettava id
