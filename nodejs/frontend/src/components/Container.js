@@ -6,7 +6,14 @@ export default class Container extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
-			contactList:[]
+			contactList:[],
+			tempContact:{
+				employeeid:"",
+				firstname:"Maija",
+				lastname:"Meikäläinen",
+				city:"fadfads",
+				homephone:"534534"
+			}
 		}
 	}
 	
@@ -81,14 +88,33 @@ export default class Container extends React.Component {
 			console.log(error);
 		});
 	}
+	
+	updateTempContact = (contact) => {
+		//console.log(contact);
+	 this.setState ({
+		 tempContact:contact
+	 })
+		
+		
+	}
+	
+	updateContactDetails = () => {
+	alert("Päivitä tempContact tietokantaan TODO");
+		console.log(this.state.tempContact);
+	}
 
 	render() {
 		return (
 			<div>
-				<ContactForm updateContacts={this.updateContacts}/>
+				<ContactForm updateContacts={this.updateContacts}
+							tempContact={this.state.tempContact}
+							updateTempContact={this.updateTempContact}/>
 				<hr></hr>
 				<ContactList contactList={this.state.contactList}
-							deleteContact={this.deleteContact}/>
+							tempContact={this.state.tempContact}
+							deleteContact={this.deleteContact}
+							updateContactDetails={this.updateContactDetails}
+							/>
 			</div>
 		)
 	
