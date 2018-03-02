@@ -18,11 +18,14 @@ const client = new Client({
 
 let app = express();
 app.use(bodyParser.json());
-// "Database"
+
+
 
 let contactList = [];
 let id=100;
 
+
+// Tietokantahaut
 const pgQuery = 'SELECT * FROM employees';
 const pgQueryInsert = "INSERT INTO employees (employeeid, firstname, lastname, city, homephone) VALUES (nextval('emp'), $1, $2, $3, $4)";
 const pgQueryDelete = "DELETE FROM employees WHERE employeeid=";
@@ -30,9 +33,9 @@ let values = ["","","",""];
 let queryContents;
 //REST api
 
-// promise
 
 
+// Clientti päälle
 client.connect();
 
 
@@ -46,10 +49,11 @@ app.get("/api/contacts", function(req,res)
 					"city":"",
 					"homephone":""
 					};
-	client.query(pgQuery)
+	// promise
+	client.query(pgQuery)  // Haetaan kaikki tietokannasta
 		.then(pgres => {
 			queryContents = pgres.rows;
-			for (let i=0;i<pgres.rows.length;i++)
+			for (let i=0;i<pgres.rows.length;i++) // Käydään rivit läpi ja lisätään tempcontactiin
 			{
 					tempContact = {
 					"employeeid":pgres.rows[i].employeeid,
@@ -59,59 +63,57 @@ app.get("/api/contacts", function(req,res)
 					"homephone":pgres.rows[i].homephone
 	
 					};
-				contactList.push(tempContact);
+				contactList.push(tempContact); // Lisätään temppi varsinaiseen listiin
 				id++;
 			}
-			//console.log(contactList);
-			
-			res.status(200).json(contactList);
+			res.status(200).json(contactList); // Pusketaan array ulos jasonina
 	
   })
-  .catch(e => console.error(e.stack));	
+  .catch(e => console.error(e.stack));	// Jos jotain meni pieleen, niin konsoliin
 });
 
 app.post("/api/contacts", function(req,res) {
 	console.log("Add contact:");
+	
+	/*  Tarvitaan tiedon updatessa
 	let contact = {
 		"firstname":req.body.firstname,
 		"lastname":req.body.lastname,
 		"city":req.body.city,
 		"homephone":req.body.homephone	
-	}
-	console.log(req.body);
+	}*/
+	
+	// Pistetään req body arrayhin joka syötetään tietokantakyselyyn parametreiksi
 	values[0] = req.body.firstname;
 	values[1] = req.body.lastname;
 	values[2] = req.body.city;
 	values[3] = req.body.homephone;
 	
-	client.query(pgQueryInsert,values)
+	//Promise
+	client.query(pgQueryInsert,values) // Tietokanta insertti
 		.then(pgQueryInsert => {
 			
-	console.log("lisätty");
-  })
-  .catch(e => console.error(e.stack));	
-	
-	
-	
-	
-	
-	res.status(200).json({"message":"success"});
+		console.log("lisätty"); // Konsoliin viesti, jos onnistui
+	})
+	.catch(e => console.error(e.stack)); // Consoleen virheilmoitukset
+		
+	res.status(200).json({"message":"success"}); // Viesti selaimeen, että onnistui (lähinnä, että frontend saa tiedon onnistuneesta lisäyksestä
 });
 
 app.delete("/api/contact/:id", function(req,res) {
-	console.log("Delete contact:"+req.params.id);
-	let tempId = req.params.id;
+	console.log("Delete contact:"+req.params.id); // Consoleen deleten tiedot
+	let tempId = req.params.id; // Poistettava id temppiin
 	
-	client.query(pgQueryDelete+tempId)
+	client.query(pgQueryDelete+tempId) // Tietokantaqueryn perään poistettava id
 		.then(pgQueryInsert => {
 			
-	console.log("Poistettu");
+	console.log("Poistettu"); // Consoleen, jos onnistui
   })
-  .catch(e => console.error(e.stack));	
+  .catch(e => console.error(e.stack)); // Virheilmoitus consoleen, jos meni kätään	
 	
 	
 	
-	res.status(200).json({"message":"Deleted"+tempId});
+	res.status(200).json({"message":"Deleted"+tempId}); // Clienttiin tieto, että poisto onnistui
 });
 
 //Startup
