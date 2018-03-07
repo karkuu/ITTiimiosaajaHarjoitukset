@@ -1,2 +1,4 @@
+nodejs/harjoitus/frontend/node_modules/*
+nodejs/harjoitus/backend/node_modules/*
+nodejs/projekti-runko/node_modules/*
 
-nodejs/backend/node_modules/*
