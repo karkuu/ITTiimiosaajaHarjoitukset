@@ -1,9 +1,5 @@
 import React from 'react';
 
-
-
-
-
 export default class ContainerMid extends React.Component {
   render() {
     return (  
