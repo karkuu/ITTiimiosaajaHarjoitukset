@@ -12,3 +12,8 @@ Kurssin pieniä yksittäisiä harjoituksia.
     - sivusto 2 (viesti/ilmoitus palkki)
     - sivusto 3 (ampparit -tyylinen)
     - sivusto 4 (linkit ikoneiksi)
+- nodejs
+  - harjoitus (northwind -tietokanta)
+    - frontend
+    - backend
+  - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
