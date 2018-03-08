@@ -4,7 +4,12 @@ import EtuSivu from './components/EtuSivu';
 import IsannoitsijaIlmoitukset from './components/IsannoitsijaIlmoitukset';
 import IsannoitsijaHenkilot from './components/IsannoitsijaHenkilot';
 import IsannoitsijaEtuSivu from './components/IsannoitsijaEtuSivu';
+import IsannoitsijaTiedot from './components/IsannoitsijaTiedot';
+import IsannoitsijaTaloyhtiot from './components/IsannoitsijaTaloyhtiot';
 import Ilmoitukset from './components/Ilmoitukset';
+import Ilmoituslomake from './components/Ilmoituslomake';
+import Tiedot from './components/Tiedot';
+
 
 
 export default class ContainerContents extends React.Component
@@ -33,7 +38,22 @@ export default class ContainerContents extends React.Component
 		{
 			return <IsannoitsijaEtuSivu/>;
 		}
-	  
+		else if (Sivu === 6)
+		{
+			return <Ilmoituslomake/>;
+		}
+		else if (Sivu === 7)
+		{
+			return <Tiedot/>;
+		}
+		else if (Sivu === 8)
+		{
+			return <IsannoitsijaTiedot/>;
+		}
+		else if (Sivu === 8)
+		{
+			return <IsannoitsijaTaloyhtiot/>;
+		}
 	  
 	}
 		
@@ -42,7 +62,7 @@ export default class ContainerContents extends React.Component
     return (    
 	<div>
 		
-		  {this.naytaSivu(2)}
+		  {this.naytaSivu(1)}
 	
 	</div>	  
     );
