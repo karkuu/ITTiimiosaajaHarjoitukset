@@ -5,17 +5,19 @@ import ContainerContents from './container/ContainerContents';
 import ContainerBottom from './container/ContainerBottom';
 
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className="App">
-		<div id="container">
-			<ContainerTop/>
-			<ContainerMid/>
-			<ContainerContents/>
-			<ContainerBottom/>
-		</div>
-      </div>
-    );
-  }
+export default class App extends Component
+{
+	render()
+	{
+		return (
+			<div className="App">
+				<div id="container">
+					<ContainerTop/>
+					<ContainerMid/>
+					<ContainerContents/>
+					<ContainerBottom/>
+				</div>
+			</div>
+		);
+	}
 }

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import IsannoitsijaIlmoituksetLista from './IsannoitsijaIlmoituksetLista';
+import IsannoitsijaIlmoituksetListaKuitatut from './IsannoitsijaIlmoituksetListaKuitatut';
+
 export default class EtuSivu extends React.Component {
   render() {
     return (
@@ -42,46 +45,12 @@ export default class EtuSivu extends React.Component {
           <td><a href="index.html"><img src="img/jarjestysalas.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a></td>
           <td></td>
         </tr>
-		     <tr>
-          <td onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(1);"><a href="index.html">Kissa katolla apua</a></td>
-          <td colspan="2">15.2.2018 09:15</td>
-          <td colspan="3">Taavetti Tompainen</td>
-          <td colspan="3">Muu palaute</td>
-          <td><a href="index.html"><img src="img/vastaanotettu.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/tyonalla.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/keskeytynyt.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/valmis.svg" class="img-fluid border border-dark rounded bg-success" alt="[H]" height="20" width="20"/></a>
-          </td>
-		     </tr>
-			 <tr>
-          <td><a href="index.html" onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(2);">Hana tippuu vieläkin!</a></td>
-          <td colspan="2">14.2.2018 19:52</td>
-          <td colspan="3">Katti Matikainen</td>
-          <td colspan="3">Reklamaatio</td>
-          <td><a href="index.html"><img src="img/vastaanotettu.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/tyonalla.svg" class="img-fluid border border-dark rounded bg-warning" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/keskeytynyt.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/valmis.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a>
-			</td>
-        </tr>
-	     <tr>
-          <td><a href="index.html" onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(3);">Naapuri bilettää taas</a></td>
-          <td colspan="2">13.2.2018 23:15</td>
-          <td colspan="3">Pekka Töpöhäntä</td>
-          <td colspan="3">Häiriöilmoitus</td>
-          <td><a href="index.html"><img src="img/vastaanotettu.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/tyonalla.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/keskeytynyt.svg" class="img-fluid img-fluid border border-dark rounded bg-danger" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/valmis.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a>
-			</td>
-		     </tr>
-		     <tr>
-          <td><a href="index.html" onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(4);">Autopaikasta</a></td>
-          <td colspan="2">10.2.2018 09:15</td>
-          <td colspan="3">Taavetti Tompainen</td>
-          <td colspan="3">Muu palaute</td>
-          <td><a href="index.html"><img src="img/vastaanotettu.svg" class="img-fluid border border-dark rounded bg-primary" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/tyonalla.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/keskeytynyt.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/valmis.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a>
-			</td>
-		     </tr>
-		     <tr>
-          <td><a href="index.html" onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(5);">Naapuri bilettää</a></td>
-          <td colspan="2">06.2.2018 00:15</td>
-          <td colspan="3">Pekka Töpöhäntä</td>
-          <td colspan="3">Häiriöilmoitus</td>
-          <td><a href="index.html"><img src="img/vastaanotettu.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/tyonalla.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/keskeytynyt.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a> <a href="index.html"><img src="img/valmis.svg" class="img-fluid border border-dark rounded bg-success" alt="[H]" height="20" width="20"/></a>
-			</td>
-		   </tr>
+		    
+			
+			<IsannoitsijaIlmoituksetLista/>
+			
+			
+			
  
 		  </tbody>
 		</table>
@@ -109,20 +78,12 @@ export default class EtuSivu extends React.Component {
          <td><a href="index.html"><img src="img/jarjestysalas.svg" class="img-fluid" alt="[H]" height="20" width="20"/></a></td>
          <td></td>
        </tr>
-		    <tr>
-         <td onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(5);"><a href="index.html">Kuka tohelo kolas...</a></td>
-         <td>05.2.2018 11:12</td>
-         <td colspan="3">Janne Holopainen</td>
-         <td colspan="3">Muu palaute</td>
-         <td>Kuitattu 06.02.2018 10:00 - Isännöitsijä Jonne</td>
-		    </tr>
-		    <tr>
-         <td onclick="datahaku.naytaIlmoituksenTiedotIsannoitsija(5);"><a href="index.html">Naapuri juhliii</a></td>
-         <td>01.2.2018 00:30</td>
-         <td colspan="3">Pekka Töpöhäntä</td>
-         <td colspan="3">Häiriöilmoitus</td>
-         <td>Kuitattu 02.02.2018 09:15 - Isännöitsijä Jonne</td>
-		    </tr>
+		   
+		   
+		   
+		   <IsannoitsijaIlmoituksetListaKuitatut/>
+		   
+		   
 		  </tbody>
    </table>
 		<a href="index.html">Lisää ilmoituksia...</a>

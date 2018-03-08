@@ -16,12 +16,12 @@ export default class ContainerContents extends React.Component
 {
 	naytaSivu = (sivu) => 
 	{
-		const Sivu = sivu;
+		let Sivu = sivu;
+		
 		if (Sivu === 1)
 		{
 			return <EtuSivu/>;
-		}
-		
+		}	
 		else if (Sivu === 2)
 		{
 			return <Ilmoitukset/>;
@@ -50,21 +50,19 @@ export default class ContainerContents extends React.Component
 		{
 			return <IsannoitsijaTiedot/>;
 		}
-		else if (Sivu === 8)
+		else if (Sivu === 9)
 		{
 			return <IsannoitsijaTaloyhtiot/>;
-		}
-	  
+		}  
 	}
 		
-  render() {
+	render()
+	{
 
-    return (    
-	<div>
-		
-		  {this.naytaSivu(1)}
-	
-	</div>	  
-    );
-  }
+		return (    
+			<div>			
+				{this.naytaSivu(2)}
+			</div>	  
+		);
+	}
 }
