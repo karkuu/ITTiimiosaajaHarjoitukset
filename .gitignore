@@ -1,4 +1,6 @@
-nodejs/harjoitus/frontend/node_modules/*
-nodejs/harjoitus/backend/node_modules/*
+nodejs/harjoitus/postgre/frontend/node_modules/*
+nodejs/harjoitus/postgre/backend/node_modules/*
+nodejs/harjoitus/mongodb/frontend/node_modules/*
+nodejs/harjoitus/mongodb/backend/node_modules/*
 nodejs/projekti-runko/node_modules/*
 
