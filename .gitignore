@@ -4,5 +4,5 @@ nodejs/harjoitus/mongodb/frontend/node_modules/*
 nodejs/harjoitus/mongodb/backend/node_modules/*
 nodejs/projekti-runko/node_modules/*
 
-.vscode/
+**/.vscode/
 
