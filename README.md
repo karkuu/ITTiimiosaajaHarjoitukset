@@ -14,6 +14,10 @@ Kurssin pieniä yksittäisiä harjoituksia.
     - sivusto 4 (linkit ikoneiksi)
 - nodejs
   - harjoitus (northwind -tietokanta)
-    - frontend
-    - backend
+    - mongodb
+      - frontend
+      - backend
+    - postgre
+      - frontend
+      - backend
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
