@@ -61,7 +61,7 @@ export default class ContainerContents extends React.Component
 
 		return (    
 			<div>			
-				{this.naytaSivu(2)}
+				{this.naytaSivu(9)}
 			</div>	  
 		);
 	}
