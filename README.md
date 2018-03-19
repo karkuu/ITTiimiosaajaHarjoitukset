@@ -20,4 +20,5 @@ Kurssin pieniä yksittäisiä harjoituksia.
     - postgre
       - frontend
       - backend
+    - mongocarshopapp (router, login)
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
