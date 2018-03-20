@@ -10,7 +10,7 @@ export default class LoginForm extends React.Component {
     }
 
     onChange = (event) => {
-        if (evet.target.name === "uname") {
+        if (event.target.name === "uname") {
             this.setState({
                 uname:event.target.value
             });
@@ -49,6 +49,7 @@ export default class LoginForm extends React.Component {
                         name="uname"
                         value={this.state.uname}
                         onChange={this.onChange}/>
+                <br/>
                 <label htmlFor="passphrase">Passphrase:</label>
                 <input type="password"
                         name="passphrase"
