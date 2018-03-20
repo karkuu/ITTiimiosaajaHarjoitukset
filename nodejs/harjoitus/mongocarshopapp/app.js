@@ -66,6 +66,24 @@ app.post("/login", function(req,res){
     })
 });
 
+app.post("/logout", function(req,res) {
+	let token = req.headers.token;
+	if (token) {
+		for(let i=0; i<loggedUsers.length;i++) {
+			if(token === loggedUsers[i]) {
+				loggedUsers.splice(i,1);
+				return res.status(200).json({"message":"Logged out"});
+			}
+			
+		}
+		
+	}
+	
+	return res.status(404).json({"message":"Not found"});
+	
+});
+
+
 function isUserLogged(req,res,next) {
     let token = req.headers.token;
     for (let i=0; i<loggedUsers.length;i++)
@@ -80,5 +98,5 @@ function isUserLogged(req,res,next) {
 
 app.use("/api", isUserLogged, carRouter)
 
-app.listen(3000);
-console.log("Running on port 3000");
+app.listen(3001);
+console.log("Running on port 3001");
