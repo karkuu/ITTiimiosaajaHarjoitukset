@@ -21,4 +21,5 @@ Kurssin pieniä yksittäisiä harjoituksia.
       - frontend
       - backend
     - mongocarshopapp (router, login)
+    - carshopfront
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
