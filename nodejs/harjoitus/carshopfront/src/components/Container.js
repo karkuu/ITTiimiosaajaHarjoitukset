@@ -16,13 +16,14 @@ export default class Container extends React.Component {
 	
 	componentDidMount() {
 		if(!sessionStorage.getItem("loginStatus")){
-			sessionStorage.setItem("loginStatus",false);
+			sessionStorage.setItem("loginStatus","not logged");
 			sessionStorage.setItem("token","");
 			return;
 		}
 		let loginStatus = sessionStorage.getItem("loginStatus");	
 		let token = sessionStorage.getItem("token");
-		if(loginStatus === true) {
+		if(loginStatus === "logged") {
+			console.log("loginstatus true");
 			this.setState({
 				isLogged:true,
 				token:token
@@ -30,83 +31,81 @@ export default class Container extends React.Component {
 			this.getCarList();
 		}
 	}
-
+	
 	getCarList = () => {
 		let onGetCarList = {
 			method:"GET",
 			mode:"cors",
 			headers:{"Content-Type":"application/json",
-			"token":this.state.token}
+					 "token":this.state.token}
 		}
 		fetch("/api/cars",onGetCarList).then((response) => {
-			if (response.ok) {
+			if(response.ok) {
 				response.json().then((data) => {
 					this.setState({
 						carList:data
 					})
 				})
-			}
-			else {
+			} else {
 				console.log(response.statusText);
 			}
 		}).catch((error) => {
 			console.log(error);
-		})
-	}	
-
+		});
+		
+	}
+	
 	addCar = (newCar) => {
 		let onAddCar = {
 			method:"POST",
 			mode:"cors",
 			headers:{"Content-Type":"application/json",
-			"token":this.state.token},
+					 "token":this.state.token},
 			body:JSON.stringify({
 				type:newCar.type,
 				price:newCar.price,
 				year:newCar.year
 			})
 		}
-		fetch("/api/cars", onAddCar).then((response)=> {
-			if (response.ok) {
-				response.json().then((data)=> {
+		fetch("/api/cars",onAddCar).then((response) => {
+			if(response.ok) {
+				response.json().then((data) => {
 					console.log(data);
 				})
 				this.getCarList();
-			}
-			else {
+			} else {
 				console.log(response.statusText);
-			}
+			}	
 		}).catch((error) => {
 			console.log(error);
-		})
+		});		
 	}
-
+	
 	buyCar = (id) => {
 		let onBuyCar = {
 			method:"DELETE",
 			mode:"cors",
 			headers:{"Content-Type":"application/json",
-			"token":this.state.token}
-
+					 "token":this.state.token}
 		}
-		fetch("/api/cars"+id, onBuyCar).then((response)=> {
-			if (response.ok) {
-				response.json().then((data)=> {
+		fetch("/api/cars/"+id,onBuyCar).then((response) => {
+			if(response.ok) {
+				response.json().then((data) => {
 					console.log(data);
 				})
 				this.getCarList();
-			}
-			else {
+			} else {
 				console.log(response.statusText);
 			}
 		}).catch((error) => {
 			console.log(error);
 		})
 	}
-
+	
 	editCar = (id) => {
-		for (let i=0;i<this.state.carList.length;i++){
-			if (id === this.state.carList[i]._id) {
+		for (let i = 0;i<this.state.carList.length;i++) {
+			if(id === this.state.carList[i]._id) {
+				console.log("edit: Match found");
 				this.setState({
 					editableCar:this.state.carList[i],
 					mode:"Edit"
@@ -114,38 +113,36 @@ export default class Container extends React.Component {
 			}
 		}
 	}
-
+	
 	updateCar = (car) => {
 		let onUpdateCar = {
 			method:"PUT",
 			mode:"cors",
 			headers:{"Content-Type":"application/json",
-			"token":this.state.token},
+					 "token":this.state.token},
 			body:JSON.stringify({
 				type:car.type,
 				price:car.price,
 				year:car.year
 			})
 		}
-		fetch("/api/cars", onUpdateCar).then((response)=> {
-			if (response.ok) {
-				response.json().then((data)=> {
-					console.log(data);
-				})
-				this.getCarList();
-				this.setState({
-					mode:"Add"
-				})
-			}
-			else {
-				console.log(response.statusText);
-			}
-		}).catch((error) => {
-			console.log(error);
-		})
-	}
-
-
+			fetch("/api/cars/"+car._id,onUpdateCar).then((response) =>{
+				if(response.ok) {
+					response.json().then((data) => {
+						console.log(data);
+						this.getCarList();
+						this.setState({
+							mode:"Add"
+						})
+					})
+				} else {
+					console.log(response.statusText)
+				}
+			}).catch((error) => {
+				console.log(error);
+			})
+		}
+	
 	onLogin = (user) => {
 		let onLogin = {
 			method:"POST",
@@ -163,7 +160,7 @@ export default class Container extends React.Component {
 						token:data.token,
 						isLogged:true
 					})
-					sessionStorage.setItem("loginStatus",true);
+					sessionStorage.setItem("loginStatus","logged");
 					sessionStorage.setItem("token",data.token);
 					this.getCarList();
 				})
@@ -190,7 +187,7 @@ export default class Container extends React.Component {
 					token:"",
 					isLogged:false
 				})
-				sessionStorage.setItem("loginStatus",false);
+				sessionStorage.setItem("loginStatus","not logged");
 				sessionStorage.setItem("token","");
 			} else {
 				console.log(response.statusText);
@@ -234,9 +231,9 @@ export default class Container extends React.Component {
 					  addCar={this.addCar}
 					  buyCar={this.buyCar}
 					  editCar={this.editCar}
-					  updateCar={this.updateCar}
 					  carList={this.state.carList}
-					  editableCar={this.state.editableCar}/>
+					  editableCar={this.state.editableCar}
+					  updateCar={this.updateCar}/>
 			</div>
 		)
 	

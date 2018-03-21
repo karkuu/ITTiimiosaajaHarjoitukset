@@ -27,10 +27,10 @@ export default class Main extends React.Component {
 					}/>
 			<Route path="/form"
 				render={() => this.props.isLogged ?
-					(<CarForm addCar={this.props.addCar}
-								mode={this.props.mode}
-								updateCar={this.props.updateCar}
-								editableCar={this.props.editableCar}/>) :
+					(<CarForm addCar={this.props.addCar} 
+							  mode={this.props.mode}
+							  updateCar={this.props.updateCar}
+							  editableCar={this.props.editableCar}/>) :
 					(<Redirect to="/"/>)
 					}/>							
 		</Switch>)
