@@ -20,7 +20,7 @@ export default class Main extends React.Component {
 			/>
 			<Route path="/list"
 				render={() => this.props.isLogged ?
-					(<CarList carlist={this.props.carList}
+					(<CarList carList={this.props.carList}
 							  buyCar={this.props.buyCar}
 							  editCar={this.props.editCar}/>) :
 					(<Redirect to="/"/>)

@@ -9,7 +9,8 @@ export default class Container extends React.Component {
 			carList:[],
 			isLogged:false,
 			mode:"Add",
-			token:""
+			token:"",
+			editableCar:[]
 		}
 	}
 	
@@ -94,6 +95,47 @@ export default class Container extends React.Component {
 					console.log(data);
 				})
 				this.getCarList();
+			}
+			else {
+				console.log(response.statusText);
+			}
+		}).catch((error) => {
+			console.log(error);
+		})
+	}
+
+	editCar = (id) => {
+		for (let i=0;i<this.state.carList.length;i++){
+			if (id === this.state.carList[i]._id) {
+				this.setState({
+					editableCar:this.state.carList[i],
+					mode:"Edit"
+				})
+			}
+		}
+	}
+
+	updateCar = (car) => {
+		let onUpdateCar = {
+			method:"PUT",
+			mode:"cors",
+			headers:{"Content-Type":"application/json",
+			"token":this.state.token},
+			body:JSON.stringify({
+				type:car.type,
+				price:car.price,
+				year:car.year
+			})
+		}
+		fetch("/api/cars", onUpdateCar).then((response)=> {
+			if (response.ok) {
+				response.json().then((data)=> {
+					console.log(data);
+				})
+				this.getCarList();
+				this.setState({
+					mode:"Add"
+				})
 			}
 			else {
 				console.log(response.statusText);
