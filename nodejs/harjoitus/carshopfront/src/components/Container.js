@@ -15,22 +15,95 @@ export default class Container extends React.Component {
 	
 	componentDidMount() {
 		if(!sessionStorage.getItem("loginStatus")){
-			sessionStorage.setItem("loginStatus","not logged");
+			sessionStorage.setItem("loginStatus",false);
 			sessionStorage.setItem("token","");
 			return;
 		}
 		let loginStatus = sessionStorage.getItem("loginStatus");	
 		let token = sessionStorage.getItem("token");
-		if(loginStatus == "logged") {
-			console.log("loginstatus true");
+		if(loginStatus === true) {
 			this.setState({
 				isLogged:true,
 				token:token
 			})
-			//this.getCarList();
+			this.getCarList();
 		}
 	}
-	
+
+	getCarList = () => {
+		let onGetCarList = {
+			method:"GET",
+			mode:"cors",
+			headers:{"Content-Type":"application/json",
+			"token":this.state.token}
+		}
+		fetch("/api/cars",onGetCarList).then((response) => {
+			if (response.ok) {
+				response.json().then((data) => {
+					this.setState({
+						carList:data
+					})
+				})
+			}
+			else {
+				console.log(response.statusText);
+			}
+		}).catch((error) => {
+			console.log(error);
+		})
+	}	
+
+	addCar = (newCar) => {
+		let onAddCar = {
+			method:"POST",
+			mode:"cors",
+			headers:{"Content-Type":"application/json",
+			"token":this.state.token},
+			body:JSON.stringify({
+				type:newCar.type,
+				price:newCar.price,
+				year:newCar.year
+			})
+		}
+		fetch("/api/cars", onAddCar).then((response)=> {
+			if (response.ok) {
+				response.json().then((data)=> {
+					console.log(data);
+				})
+				this.getCarList();
+			}
+			else {
+				console.log(response.statusText);
+			}
+		}).catch((error) => {
+			console.log(error);
+		})
+	}
+
+	buyCar = (id) => {
+		let onBuyCar = {
+			method:"DELETE",
+			mode:"cors",
+			headers:{"Content-Type":"application/json",
+			"token":this.state.token}
+
+		}
+		fetch("/api/cars"+id, onBuyCar).then((response)=> {
+			if (response.ok) {
+				response.json().then((data)=> {
+					console.log(data);
+				})
+				this.getCarList();
+			}
+			else {
+				console.log(response.statusText);
+			}
+		}).catch((error) => {
+			console.log(error);
+		})
+	}
+
+
 	onLogin = (user) => {
 		let onLogin = {
 			method:"POST",
@@ -48,8 +121,9 @@ export default class Container extends React.Component {
 						token:data.token,
 						isLogged:true
 					})
-					sessionStorage.setItem("loginStatus","logged");
+					sessionStorage.setItem("loginStatus",true);
 					sessionStorage.setItem("token",data.token);
+					this.getCarList();
 				})
 			} else {
 				console.log(response.statusText);
@@ -74,7 +148,7 @@ export default class Container extends React.Component {
 					token:"",
 					isLogged:false
 				})
-				sessionStorage.setItem("loginStatus","not logged");
+				sessionStorage.setItem("loginStatus",false);
 				sessionStorage.setItem("token","");
 			} else {
 				console.log(response.statusText);
@@ -113,7 +187,10 @@ export default class Container extends React.Component {
 						onLogout={this.onLogout}/>
 				<Main isLogged={this.state.isLogged}
 					  onLogin={this.onLogin}
-					  onRegister={this.onRegister}/>
+					  onRegister={this.onRegister}
+					  addCar={this.addCar}
+					  buyCar={this.buyCar}
+					  carList={this.state.carList}/>
 			</div>
 		)
 	
