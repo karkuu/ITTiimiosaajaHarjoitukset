@@ -8,7 +8,7 @@ export default class Container extends React.Component {
 		this.state = {
 			carList:[],
 			isLogged:false,
-			mode:"add",
+			mode:"Add",
 			token:""
 		}
 	}
@@ -188,6 +188,7 @@ export default class Container extends React.Component {
 				<Main isLogged={this.state.isLogged}
 					  onLogin={this.onLogin}
 					  onRegister={this.onRegister}
+					  mode={this.state.mode}
 					  addCar={this.addCar}
 					  buyCar={this.buyCar}
 					  carList={this.state.carList}/>
