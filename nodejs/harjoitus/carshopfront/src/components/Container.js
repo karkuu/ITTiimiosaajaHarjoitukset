@@ -10,7 +10,7 @@ export default class Container extends React.Component {
 			isLogged:false,
 			mode:"Add",
 			token:"",
-			editableCar:[]
+			editableCar:{}
 		}
 	}
 	
@@ -233,7 +233,10 @@ export default class Container extends React.Component {
 					  mode={this.state.mode}
 					  addCar={this.addCar}
 					  buyCar={this.buyCar}
-					  carList={this.state.carList}/>
+					  editCar={this.editCar}
+					  updateCar={this.updateCar}
+					  carList={this.state.carList}
+					  editableCar={this.state.editableCar}/>
 			</div>
 		)
 	

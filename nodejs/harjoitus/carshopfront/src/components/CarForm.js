@@ -4,10 +4,21 @@ export default class CarForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			_id:"",
+			id:"",
 			type:"",
 			price:"",
 			year:""
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.mode === "Edit") {
+			this.setState({
+				_id:nextProps.editableCar._id,
+				type:nextProps.editableCar.type,
+				price:nextProps.editableCar.price,
+				year:nextProps.editableCar.year
+			})
 		}
 	}
 
@@ -45,6 +56,15 @@ export default class CarForm extends React.Component {
 				price:0
 			})
 		}
+		if (this.props.mode === "Edit")
+		{
+			this.props.updateCar(newCar);
+		}
+		this.setState({
+			type:"",
+			price:0,
+			year:0
+		})
 	}
 
 
