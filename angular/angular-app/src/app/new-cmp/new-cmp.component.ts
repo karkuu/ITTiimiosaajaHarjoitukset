@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MyserviceService } from './../myservice.service';
+
 @Component({
   selector: 'app-new-cmp',
   templateUrl: './new-cmp.component.html',
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCmpComponent implements OnInit {
 
-  constructor() { }
+  constructor(private myservice: MyserviceService) { }
   testvar = "Test variable.";
+  randomNumber;
 
    // declared array of months.
   months = ["January", "Feburary", "March", "April", "May", 
@@ -41,6 +44,9 @@ export class NewCmpComponent implements OnInit {
 
 
   ngOnInit() {
+    this.randomNumber = this.myservice.randomNumberBetween(1,10);
+    this.myservice.serviceText += "Child adds to text.";
+    console.log(this.myservice.serviceText);
   }
 
 }
