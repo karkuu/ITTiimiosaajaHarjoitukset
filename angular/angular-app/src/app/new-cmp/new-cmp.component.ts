@@ -30,7 +30,7 @@ export class NewCmpComponent implements OnInit {
     
     console.log(event);
   }
-  
+
   changemonths(event) {
     this.isavailable = true;
     this.selectedMonth = event.target.value;
