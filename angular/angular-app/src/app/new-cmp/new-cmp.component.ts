@@ -15,6 +15,7 @@ export class NewCmpComponent implements OnInit {
             "June", "July", "August", "September",
             "October", "November", "December"];
   selectedMonth = "";
+  selectedMonthIndex = "";
   isavailable = false;   //variable is set to true
 
   
@@ -32,6 +33,7 @@ export class NewCmpComponent implements OnInit {
   changemonths(event) {
     this.isavailable = true;
     this.selectedMonth = event.target.value;
+    this.selectedMonthIndex = event.target.selectedIndex;
     console.log(event);
   }  
 
