@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class NewCmpComponent implements OnInit {
 
   constructor() { }
+  testvar = "Test variable.";
+
+   // declared array of months.
+   months = ["January", "Feburary", "March", "April", "May", 
+            "June", "July", "August", "September",
+            "October", "November", "December"];
 
   ngOnInit() {
   }
