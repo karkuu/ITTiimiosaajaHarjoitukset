@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { MyserviceService } from './../myservice.service';
+
+
 
 @Component({
   selector: 'app-new-cmp',
@@ -19,7 +23,9 @@ export class NewCmpComponent implements OnInit {
             "October", "November", "December"];
   selectedMonth = "";
   selectedMonthIndex = "";
-  isavailable = false; 
+  isavailable = false;
+  formdata;
+  emailid;
 
   
   myClickFunction(event) {
@@ -41,12 +47,24 @@ export class NewCmpComponent implements OnInit {
     console.log(event);
   }  
 
+  onClickSubmit(data)
+  {
+    this.emailid = data.emailid;
+  }
 
 
   ngOnInit() {
     this.randomNumber = this.myservice.randomNumberBetween(1,10);
     this.myservice.serviceText += "Child adds to text.";
     console.log(this.myservice.serviceText);
+
+    this.formdata = new FormGroup({
+      emailid: new FormControl("", Validators.compose([
+         Validators.required,
+         Validators.pattern("[^ @]*@[^ @]*")
+      ])),
+      passwd: new FormControl("")
+   });
   }
 
 }
