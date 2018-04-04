@@ -24,3 +24,5 @@ Kurssin pieniä yksittäisiä harjoituksia.
     - carshopfront
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
 - angular
+  - angular-app
+  - mean-app
