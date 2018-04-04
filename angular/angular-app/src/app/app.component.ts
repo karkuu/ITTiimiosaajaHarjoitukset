@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
   title = 'Hello World!!';
   randomNumber;
-  httpdata;
+  httpdata = [];
   serviceText = this.myservice.serviceText;
 
   constructor(private myservice: MyserviceService,private http: Http) {}
@@ -31,7 +31,8 @@ export class AppComponent {
 
   displaydata(data)
   {
-    this.httpdata = data.results[0].name;
+    this.httpdata[0] = data.results[0].name;
+    this.httpdata[1] = data.results[0].businessId;
   }
 
 }
