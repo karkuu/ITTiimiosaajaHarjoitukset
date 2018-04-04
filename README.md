@@ -23,3 +23,4 @@ Kurssin pieniä yksittäisiä harjoituksia.
     - mongocarshopapp (router, login)
     - carshopfront
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
+- angular
