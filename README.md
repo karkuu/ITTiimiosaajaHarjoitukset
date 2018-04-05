@@ -25,4 +25,4 @@ Kurssin pieniä yksittäisiä harjoituksia.
   - projekti-runko (It-tiimiosaajaksi -projektin hajoittamista osiin)
 - angular
   - angular-app
-  - mean-app
+  - mean-app (https://www.djamware.com/post/5a0673c880aca7739224ee21/mean-stack-angular-5-crud-web-application-example)
