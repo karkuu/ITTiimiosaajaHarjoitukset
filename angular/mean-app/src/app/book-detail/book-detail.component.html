@@ -5,18 +5,13 @@
     <dd>{{ book.isbn }}</dd>
     <dt>Author</dt>
     <dd>{{ book.author }}</dd>
+    <dt>Publish Year</dt>
+    <dd>{{ book.published_year }}</dd>
     <dt>Publisher</dt>
     <dd>{{ book.publisher }}</dd>
-    <dt>Price</dt>
-    <dd>{{ book.price }}</dd>
     <dt>Update Date</dt>
-    <dd>{{ book.updated_at }}</dd>
+    <dd>{{ book.updated_date | date:'short' }}</dd>
   </dl>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <a [routerLink]="['/book-edit', book._id]" class="btn btn-success">EDIT</a>
-  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
