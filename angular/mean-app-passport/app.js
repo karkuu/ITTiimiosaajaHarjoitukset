@@ -7,14 +7,14 @@ var passport = require('passport');
 var config = require('./config/database');
 
 var api = require('./routes/api');
-var book = require('./routes/book');
+//var book = require('./routes/book');
 var app = express();
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/mean-angular5', { })
   .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+  .catch((err) => "err: " + console.error(err));
 
 app.use(passport.initialize());
 
@@ -22,9 +22,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/books', express.static(path.join(__dirname, 'dist')));
+app.use('/api', express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
-app.use('/book', book);
+//app.use('/book', book);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

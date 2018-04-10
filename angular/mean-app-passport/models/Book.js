@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-var BookSchema = new Schema({
+var BookSchema = new mongoose.Schema({
   isbn: {
     type: String,
     required: true
@@ -17,7 +16,10 @@ var BookSchema = new Schema({
   publisher: {
     type: String,
     required: true
-  }
+  },
+  description: String,
+  published_year: String,
+  updated_date: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Book', BookSchema);

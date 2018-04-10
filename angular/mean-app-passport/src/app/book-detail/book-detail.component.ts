@@ -19,13 +19,13 @@ export class BookDetailComponent implements OnInit {
   }
 
   getBookDetail(id) {
-    this.http.get('/book/'+id).subscribe(data => {
+    this.http.get('/api/'+id).subscribe(data => {
       this.book = data;
     });
   }
 
   deleteBook(id) {
-    this.http.delete('/book/'+id)
+    this.http.delete('/api/'+id)
       .subscribe(res => {
           this.router.navigate(['/books']);
         }, (err) => {

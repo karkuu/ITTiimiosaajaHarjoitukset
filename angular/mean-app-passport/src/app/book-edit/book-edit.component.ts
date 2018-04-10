@@ -19,14 +19,14 @@ export class BookEditComponent implements OnInit {
   }
 
   getBook(id) {
-    this.http.get('/book/'+id).subscribe(data => {
+    this.http.get('/api/'+id).subscribe(data => {
       this.book = data;
     });
   }
 
   updateBook(id) {
     this.book.updated_date = Date.now();
-    this.http.put('/book/'+id, this.book)
+    this.http.put('/api/'+id, this.book)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/book-details', id]);
