@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('mean-app App', () => {
+describe('mean-secure App', () => {
   let page: AppPage;
 
   beforeEach(() => {
