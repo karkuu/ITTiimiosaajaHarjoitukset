@@ -4,8 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+
+// Passport
+var expressValidator = require('express-validator');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var book = require('./routes/book');
+var users = require('./routes/users');
+
 var app = express();
+
+
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -19,6 +29,9 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/book', book);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/users',users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
