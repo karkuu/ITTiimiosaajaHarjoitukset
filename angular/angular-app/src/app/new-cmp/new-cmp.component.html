@@ -1,0 +1,58 @@
+<p>
+  new-cmp works!
+</p>
+
+<p>
+  {{testvar}}
+</p>
+
+
+<p> Months :
+  <select (change) = "changemonths($event)">
+     <option *ngFor="let i of months">{{i}}</option>
+  </select>
+</p>
+
+<p>Selected month: {{selectedMonth}} with index number {{selectedMonthIndex}}</p>
+
+<p>
+  <span *ngIf="isavailable; then condition1 else condition2">Month has been selected.</span>
+   <ng-template #condition1>Month has been selected.</ng-template>
+   <ng-template #condition2>Month hasn't been selected.</ng-template>
+</p>
+
+<button (click)="myClickFunction($event)">
+  Click Me
+</button>
+
+<p>Directive: <span changeText></span></p>
+
+<p>Square root of 25 is: {{25 | sqrt}}</p>
+
+<p>
+<a routerLink = "link-target">New component</a>
+
+<br />
+<br/>
+<router-outlet></router-outlet>
+</p>
+
+<p>Another random number: {{randomNumber}}</p>
+
+
+<div>
+  <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+     <input type = "text" class = "fortextbox" name = "emailid" placeholder = "emailid" 
+        formControlName = "emailid">
+     <br/>
+     <input type = "password" class = "fortextbox" name = "passwd" 
+        placeholder = "passwd" formControlName = "passwd">
+     <br/>
+     <input type = "submit" [disabled] = "!formdata.valid" class = "forsubmit" 
+        value = "Log In">
+  </form>
+</div>
+
+<p>
+  Email entered is : {{emailid}}
+</p>
