@@ -1,0 +1,34 @@
+<graph>
+	<graphtype>boxchart</graphtype>
+	<staticdatatype>0</staticdatatpy>
+	<staticdata></staticdata>
+	<datafields>
+		<sourcefield>FIELDNAME1</sourcefield> 
+		<sourcefield>FIELDNAME2</sourcefield> 
+		<sourcefield>FIELDNAME3</sourcefield> 
+	</datafields>
+</graph>
+<graph>
+	<graphtype>linechart</graphtype>
+	<staticdatatype>0</staticdatatpy>
+	<staticdata></staticdata>
+	<datafields>
+		<sourcefield>FIELDNAME1</sourcefield> 
+		<sourcefield>FIELDNAME2</sourcefield> 
+		<sourcefield>FIELDNAME3</sourcefield> 
+	</datafields>
+	<boundaries>
+	
+	</boundaries>
+	
+	
+</graph>
+	
+	
+
+	
+
+
+
+
+
