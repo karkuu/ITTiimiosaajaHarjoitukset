@@ -42,11 +42,12 @@ d3.csv("/projekti.csv", function(error, data) {
       .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
       .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
       
+
     node.append("text")
       .attr("dy", 12)
-      .attr("x", function(d) { return d.children ? -8 : 8; })
-      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-      .text(function(d) { console.log(d.data.value); return d.data.value; });
+      .attr("x", function(d) { return d.children ? 0 : 1000; })
+      .style("fill", "#0000b3")
+      .text(function(d) {return d.data.value; });
     
 
 });

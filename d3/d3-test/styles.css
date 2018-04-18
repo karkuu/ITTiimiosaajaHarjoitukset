@@ -4,6 +4,7 @@
   
   .node text {
     font: 10px sans-serif;
+    
   }
   
   .node--internal circle {
@@ -21,13 +22,6 @@
     stroke-width: 1.5px;
   }
   
-  form {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    position: absolute;
-    left: 10px;
-    top: 10px;
-  }
   
-  label {
-    display: block;
-  }
+  
+  

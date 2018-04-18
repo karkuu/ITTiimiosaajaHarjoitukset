@@ -1,8 +1,8 @@
 id,value
-App,funktio1|funktio2
+App,funktio1 funktio2
 App.Containers,
 App.Containers.ContainerTop,
-App.Containers.ContainerTop.TopMenu,funktio3|funktio4
+App.Containers.ContainerTop.TopMenu,funktio3 funktio4
 App.Containers.ContainerTop.TopMenu.TopMenuAsukas,
 App.Containers.ContainerTop.TopMenu.Huoltoyhtio,
 App.Containers.ContainerTop.TopMenu.TopMenuIsannoitsija,
