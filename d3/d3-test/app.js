@@ -37,15 +37,15 @@ d3.csv("/projekti.csv", function(error, data) {
       .attr("r", 2.5);
 
   node.append("text")
-      .attr("dy", 3)
-      .attr("x", function(d) { return d.children ? -8 : 8; })
-      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-      .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+  .attr("dy", function(d) { return d.data.value ? 10 : 3; })
+  .attr("dx", function(d) { return d.children ? -8 : 8; })
+  .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+  .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
       
 
     node.append("text")
-      .attr("dy", 12)
-      .attr("x", function(d) { return d.children ? 0 : 1000; })
+      .attr("dy",25 )
+      .attr("x", -15)
       .style("fill", "#0000b3")
       .text(function(d) {return d.data.value; });
     
