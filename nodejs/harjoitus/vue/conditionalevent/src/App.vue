@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <conditional/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Conditional from './components/Conditional'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Conditional
   }
 }
 </script>

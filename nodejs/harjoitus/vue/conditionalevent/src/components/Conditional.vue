@@ -6,7 +6,7 @@
         </div>
         <div v-else>
             <label>Login</label>
-            <button v-on:click="login()">Logit</button>
+            <button v-on:click="login()">Login</button>
         </div>
         <p v-show="isLogged">
             Will not show if not logged in. This component will still be rendered.
