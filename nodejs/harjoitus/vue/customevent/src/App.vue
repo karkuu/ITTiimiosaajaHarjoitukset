@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1> Child component says: {{msg}}</h1>
+    <h1> CustomEvent component says: {{msg}}</h1>
     <CustomEvent @my-custom-event="handleEvent(...arguments)"/>
   </div>
 </template>
