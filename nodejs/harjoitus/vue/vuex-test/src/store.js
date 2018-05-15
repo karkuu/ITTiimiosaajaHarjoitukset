@@ -7,9 +7,9 @@ const state = {
 
 const mutations = {
     addToList(state,shoppingItem) {
-        state.shoppingList.push(shoppingList);
+        state.shoppingList.push(shoppingItem);
     },
-    removeFromList = {
+    removeFromList(state,index) {
         state.shoppingList.splice(index,1);
     }
 }
@@ -19,4 +19,4 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state,
     mutations
-})
+});
