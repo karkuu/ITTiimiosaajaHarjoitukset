@@ -47,26 +47,26 @@ export default {
                 count:this.count
             }
             if (this.currentItem === -1){
-                this.$store.commit("addToList",shoppingItem);
+                this.$store.dispatch("addToList",shoppingItem);
             }
-            else {
+           /* else {
                 this.$store.commit("editItem",shoppingItem,this.currentItem);
-            }
+            }*/
             this.type = "";
             this.price = 0;
             this.count = 0;
-            this.currentItem = -1;
+            //this.currentItem = -1;
            
         },
         removeFromList: function(index) {
-            this.$store.commit("removeFromList",index);
-        },
+            this.$store.dispatch("removeFromList",this.$store.state.shoppingList[index].id);
+        }/*,
         editItem: function(index) {
             this.currentItem = index;
             this.price = this.$store.state.shoppingList[index].price;
             this.count = this.$store.state.shoppingList[index].count;
             this.type = this.$store.state.shoppingList[index].type;
-        }
+        }*/
     }
 }
 </script>

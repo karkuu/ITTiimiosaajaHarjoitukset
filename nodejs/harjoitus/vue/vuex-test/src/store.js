@@ -11,6 +11,10 @@ const mutations = {
     },
     removeFromList(state,index) {
         state.shoppingList.splice(index,1);
+    },
+    editItem(state,shoppingItem,index){
+        state.shoppingList.splice(index,1,{type:shoppingItem.type, price:shoppingItem.price, count:shoppingItem.count});
+
     }
 }
 
